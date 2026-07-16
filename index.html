@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinay — Platform &amp; SRE Engineer</title>
+<meta name="description" content="Vinay — Platform &amp; SRE engineer. Kubernetes, Terraform, AWS, GitOps, AI infrastructure. Available for engagements.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F2238;
+    --bg-panel: #15304C;
+    --bg-panel-raised: #1B3A5C;
+    --grid-line: rgba(90,140,180,0.10);
+    --border: #2C4E6E;
+    --border-bright: #3E6789;
+    --text: #E7EFF6;
+    --text-muted: #82A0B8;
+    --text-dim: #5A7690;
+    --amber: #FFB238;
+    --amber-dim: #C98B2A;
+    --green: #4FD69C;
+    --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --radius: 3px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 32px 32px,
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 32px 32px,
+      var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+  :focus-visible{ outline: 2px solid var(--amber); outline-offset: 2px; }
+
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(15,34,56,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 28px;
+  }
+  .logo{
+    font-family: var(--mono); font-weight:700; font-size: 15px;
+    letter-spacing: 0.02em; text-decoration:none;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .bracket{ color: var(--amber); }
+  .nav-right{ display:flex; align-items:center; gap:22px; }
+  .status-pill{
+    display:flex; align-items:center; gap:7px;
+    font-family: var(--mono); font-size:11.5px; letter-spacing:0.06em;
+    color: var(--green); text-transform:uppercase;
+  }
+  .dot{
+    width:7px; height:7px; border-radius:50%; background: var(--green);
+    box-shadow: 0 0 0 0 rgba(79,214,156,0.6);
+    animation: pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(79,214,156,0.45); }
+    70%{ box-shadow: 0 0 0 7px rgba(79,214,156,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(79,214,156,0); }
+  }
+  .btn{
+    font-family: var(--mono); font-size: 13px; font-weight:600;
+    padding: 9px 16px; border-radius: var(--radius);
+    text-decoration:none; display:inline-block;
+    border: 1px solid var(--border-bright);
+    transition: border-color .15s ease, background .15s ease, transform .1s ease;
+  }
+  .btn:hover{ border-color: var(--amber); transform: translateY(-1px); }
+  .btn-solid{
+    background: var(--amber); color: #16283C; border-color: var(--amber);
+    font-weight:700;
+  }
+  .btn-solid:hover{ background: #ffbf55; }
+  .nav-right .btn{ display:none; }
+  @media(min-width:640px){ .nav-right .btn{ display:inline-block; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 64px 0 40px; }
+  .hero-grid{
+    display:grid; grid-template-columns: 1fr; gap: 40px; align-items:start;
+  }
+  @media(min-width:900px){ .hero-grid{ grid-template-columns: 1.05fr 0.95fr; gap:56px; } }
+
+  h1{
+    font-family: var(--mono);
+    font-size: clamp(28px, 4.4vw, 44px);
+    line-height: 1.15; font-weight:700; letter-spacing:-0.01em;
+    margin: 14px 0 16px;
+  }
+  h1 span{ color: var(--amber); }
+  .lede{
+    color: var(--text-muted); font-size: 17px; max-width: 46ch; margin-bottom: 26px;
+  }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:12px; }
+
+  /* terminal panel */
+  .terminal{
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow:hidden;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.5);
+  }
+  .term-bar{
+    display:flex; align-items:center; gap:8px;
+    padding: 10px 14px; background: var(--bg-panel-raised);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+  }
+  .term-dots{ display:flex; gap:6px; }
+  .term-dots span{ width:9px; height:9px; border-radius:50%; background:#3E6789; }
+  .term-body{ padding: 20px; font-family: var(--mono); font-size: 13.5px; }
+  .term-body .line{ margin-bottom: 10px; }
+  .term-body .prompt{ color: var(--green); }
+  .term-body .out{ color: var(--text-muted); padding-left: 18px; }
+  .term-body .out strong{ color: var(--text); font-weight:600; }
+  .cursor{
+    display:inline-block; width:8px; height:15px; background: var(--amber);
+    vertical-align: middle; margin-left:4px;
+    animation: blink 1s step-end infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .cursor, .dot{ animation: none; }
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .uptime-box{
+    margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border);
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:8px;
+  }
+  .uptime-label{ font-size:11px; letter-spacing:0.1em; color: var(--text-dim); text-transform:uppercase; }
+  .uptime-value{ font-size: 13.5px; color: var(--green); font-weight:600; }
+
+  /* badges */
+  .badges{ display:flex; flex-wrap:wrap; gap:9px; margin: 22px 0 0; }
+  .badge{
+    font-family: var(--mono); font-size: 12px; padding: 6px 11px;
+    border: 1px solid var(--border); border-radius: 20px; color: var(--text-muted);
+  }
+  .badge.ok{ color: var(--green); border-color: rgba(79,214,156,0.35); }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding: 64px 0; border-top: 1px solid var(--border); }
+  .section-head{ margin-bottom: 34px; max-width: 60ch; }
+  .section-head h2{
+    font-family: var(--mono); font-size: clamp(22px,3vw,28px); margin-top:8px;
+  }
+  .section-head p{ color: var(--text-muted); margin-top: 10px; }
+
+  /* ---------- SERVICES ---------- */
+  .services{ display:grid; grid-template-columns: 1fr; gap: 18px; }
+  @media(min-width:800px){ .services{ grid-template-columns: repeat(3,1fr); } }
+  .svc-card{
+    background: var(--bg-panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 22px; display:flex; flex-direction:column;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .svc-card:hover{ border-color: var(--border-bright); transform: translateY(-3px); }
+  .svc-tag{
+    font-family: var(--mono); font-size:11px; color: var(--amber);
+    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:10px;
+  }
+  .svc-card h3{ font-size: 18px; margin-bottom: 10px; }
+  .svc-card p{ color: var(--text-muted); font-size: 14.5px; flex-grow:1; }
+  .svc-meta{
+    margin-top:16px; padding-top:14px; border-top: 1px solid var(--border);
+    font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+    display:flex; justify-content:space-between;
+  }
+
+  /* ---------- METRICS ---------- */
+  .metrics{ display:grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow:hidden; }
+  @media(min-width:800px){ .metrics{ grid-template-columns: repeat(4,1fr); } }
+  .metric{ background: var(--bg-panel); padding: 26px 20px; }
+  .metric .num{ font-family: var(--mono); font-size: clamp(24px,3vw,32px); color: var(--amber); font-weight:700; }
+  .metric .lbl{ margin-top:6px; font-size: 13px; color: var(--text-muted); }
+
+  /* ---------- CAREER LOG ---------- */
+  .log{ display:flex; flex-direction:column; }
+  .log-entry{
+    display:grid; grid-template-columns: 100px 1fr; gap: 18px;
+    padding: 18px 0; border-bottom: 1px solid var(--border);
+  }
+  .log-entry:last-child{ border-bottom:none; }
+  .log-hash{ font-family: var(--mono); color: var(--amber-dim); font-size: 13px; padding-top:2px; }
+  .log-main h3{ font-size: 16px; margin-bottom:4px; }
+  .log-main .role{ font-family: var(--mono); font-size:12px; color: var(--text-dim); margin-bottom:8px; }
+  .log-main p{ color: var(--text-muted); font-size: 14px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-panel{
+    background: var(--bg-panel); border:1px solid var(--border); border-radius:8px;
+    padding: 30px; max-width: 640px;
+  }
+  .field{ margin-bottom:16px; }
+  .field label{
+    display:block; font-family: var(--mono); font-size:12px; color: var(--text-dim);
+    margin-bottom:6px; letter-spacing:0.04em;
+  }
+  .field input, .field textarea{
+    width:100%; background: var(--bg); border:1px solid var(--border);
+    border-radius: var(--radius); color: var(--text); font-family: var(--sans);
+    font-size:14px; padding: 11px 12px;
+  }
+  .field textarea{ min-height: 110px; resize: vertical; }
+  .field input:focus, .field textarea:focus{ border-color: var(--amber); }
+  .field::before{ content: ''; }
+  .contact-note{ font-family: var(--mono); font-size:11.5px; color: var(--text-dim); margin-top:14px; }
+
+  footer{ padding: 34px 0 50px; border-top:1px solid var(--border); }
+  .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family: var(--mono); font-size:12px; color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="bracket">[</span>vawsome<span class="bracket">]</span></a>
+    <div class="nav-right">
+      <div class="status-pill"><span class="dot"></span> Available</div>
+      <a class="btn" href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-solid" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">Platform &amp; SRE Engineer · 15 years</p>
+      <h1>Infrastructure that doesn't page anyone at <span>3am</span>.</h1>
+      <p class="lede">I design, build, and stabilize cloud platforms — Kubernetes, Terraform, GitOps, and increasingly the infrastructure behind AI agents. Currently taking on new engagements alongside a full-time role.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#services">See services</a>
+        <a class="btn" href="#log">Career log</a>
+      </div>
+      <div class="badges">
+        <span class="badge ok">CKA certified</span>
+        <span class="badge ok">CKAD certified</span>
+        <span class="badge">Kubernetes</span>
+        <span class="badge">Terraform</span>
+        <span class="badge">AWS</span>
+        <span class="badge">GitOps / ArgoCD</span>
+        <span class="badge">AI Infrastructure</span>
+        <span class="badge">Python</span>
+      </div>
+    </div>
+
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="term-dots"><span></span><span></span><span></span></div>
+        vinay@vawsome:~
+      </div>
+      <div class="term-body">
+        <div class="line"><span class="prompt">$</span> whoami</div>
+        <div class="line out">Platform / SRE engineer.<br><strong>15 years</strong> across Linux, storage, cloud, and AI infra.</div>
+        <div class="line"><span class="prompt">$</span> ls certifications/</div>
+        <div class="line out">CKA&nbsp;&nbsp;CKAD</div>
+        <div class="line"><span class="prompt">$</span> status --check</div>
+        <div class="line out"><strong style="color:var(--green)">● available</strong> for new engagements<span class="cursor"></span></div>
+
+        <div class="uptime-box">
+          <span class="uptime-label">Vawsome system uptime</span>
+          <span class="uptime-value" id="uptime">calculating…</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Services</p>
+    <h2>Fixed-scope engagements, not open-ended hours.</h2>
+    <p>Each one solves a specific problem with a clear deliverable. Scope and price are confirmed on a short call before anything starts.</p>
+  </div>
+  <div class="services">
+    <div class="svc-card">
+      <div class="svc-tag">Setup</div>
+      <h3>GitOps Platform Build</h3>
+      <p>A production-ready Kubernetes environment with Terraform-managed infrastructure and ArgoCD-driven deployments — so releases become a merge, not a manual step.</p>
+      <div class="svc-meta"><span>Typical scope: 2 weeks</span><span>Fixed price</span></div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-tag">Audit</div>
+      <h3>Cloud Cost Audit</h3>
+      <p>A focused review of your AWS spend with concrete, ranked recommendations. Built on the same approach used to cut cloud costs by €13M at enterprise scale.</p>
+      <div class="svc-meta"><span>Typical scope: 1–2 weeks</span><span>Fixed price</span></div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-tag">Build</div>
+      <h3>AI Infrastructure Sprint</h3>
+      <p>Production infrastructure for LLM and agent workloads — model serving, orchestration, and the Terraform and Lambda plumbing that keeps it running unattended.</p>
+      <div class="svc-meta"><span>Typical scope: 2–3 weeks</span><span>Fixed price</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Track record</p>
+    <h2>What fifteen years turns into.</h2>
+  </div>
+  <div class="metrics">
+    <div class="metric"><div class="num">€13M</div><div class="lbl">Cloud costs optimized</div></div>
+    <div class="metric"><div class="num">15</div><div class="lbl">Years in infrastructure &amp; SRE</div></div>
+    <div class="metric"><div class="num">2</div><div class="lbl">Kubernetes certifications</div></div>
+    <div class="metric"><div class="num">1</div><div class="lbl">Multi-agent AI platform shipped to production</div></div>
+  </div>
+</section>
+
+<section id="log" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Career log</p>
+    <h2>Deploy history.</h2>
+  </div>
+  <div class="log">
+    <div class="log-entry">
+      <div class="log-hash">2024 → now</div>
+      <div class="log-main">
+        <h3>Vawsome</h3>
+        <div class="role">Independent Platform / SRE Consultant · ZZP</div>
+        <p>Running infrastructure and AI-platform engagements independently, including a long-term contract building cloud and MLOps capability for a major enterprise.</p>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">Enterprise</div>
+      <div class="log-main">
+        <h3>Cloud &amp; MLOps Engineering</h3>
+        <div class="role">Senior Platform Engineer</div>
+        <p>Led cloud cost optimization work that saved €13M, and built ML operations tooling on SageMaker and Azure ML.</p>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">2021–2024</div>
+      <div class="log-main">
+        <h3>Platform Engineering</h3>
+        <div class="role">Cloud / SRE Engineer</div>
+        <p>Three years in permanent employment before transitioning to independent consulting.</p>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">Earlier</div>
+      <div class="log-main">
+        <h3>Enterprise IT &amp; Storage</h3>
+        <div class="role">Systems &amp; Storage Administration → Cloud</div>
+        <p>First decade in Linux, Solaris, AIX, and enterprise storage administration — the foundation everything since has been built on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Contact</p>
+    <h2>Start a conversation.</h2>
+    <p>Tell me what you're trying to solve. I'll reply with whether it's a fit and what it would take.</p>
+    <p style="margin-top:10px;"><a href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:13px; color:var(--amber); text-decoration:none;">→ linkedin.com/in/vinaynair-sre</a></p>
+  </div>
+  <div class="contact-panel">
+    <form id="contactForm">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="message">What are you trying to solve?</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-solid">Send message</button>
+      <p class="contact-note">Opens your email client with this pre-filled and ready to send.<br>Prefer to call? <a href="tel:+31620391314" style="color:var(--amber); text-decoration:none;">+31 6 20 39 13 14</a></p>
+    </form>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <span>Vawsome</span>
+    <span id="year"></span>
+  </div>
+</footer>
+
+<script>
+  // Uptime counter — since Vawsome's founding
+  const start = new Date('2024-08-01T00:00:00');
+  const el = document.getElementById('uptime');
+  function tick(){
+    const now = new Date();
+    let diff = Math.floor((now - start) / 1000);
+    const days = Math.floor(diff / 86400); diff -= days*86400;
+    const hrs = Math.floor(diff / 3600); diff -= hrs*3600;
+    const mins = Math.floor(diff / 60);
+    const secs = diff - mins*60;
+    el.textContent = days + 'd ' + hrs + 'h ' + mins + 'm ' + secs + 's';
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Contact form -> mailto
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent('Website inquiry from ' + name);
+    const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+    window.location.href = 'mailto:risingvinay@gmail.com?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
