@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomy of an apex outage — Vinay Nair</title>
+<meta name="description" content="How a leftover A record and an exact-match Workers Route quietly sent my apex domain to a stranger's nginx — a DNS migration postmortem.">
+<link rel="canonical" href="https://vinay.vawsome.com/writing/anatomy-of-an-apex-outage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anatomy of an apex outage">
+<meta property="og:description" content="A leftover A record, an exact-match Route, and a stranger's nginx 404 — a DNS migration postmortem from vawsome.com.">
+<meta property="og:url" content="https://vinay.vawsome.com/writing/anatomy-of-an-apex-outage">
+<meta property="og:image" content="https://vinay.vawsome.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F2238'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%23FFB238' text-anchor='middle'%3E[n]%3C/text%3E%3C/svg%3E">
+<link rel="alternate" type="application/rss+xml" title="Vinay Nair — Writing" href="/rss.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F2238;
+    --bg-panel: #15304C;
+    --bg-panel-raised: #1B3A5C;
+    --grid-line: rgba(90,140,180,0.10);
+    --border: #2C4E6E;
+    --border-bright: #3E6789;
+    --text: #E7EFF6;
+    --text-muted: #82A0B8;
+    --text-dim: #5A7690;
+    --amber: #FFB238;
+    --amber-dim: #C98B2A;
+    --green: #4FD69C;
+    --red: #F0716E;
+    --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  body{
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 32px 32px,
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 32px 32px,
+      var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: inherit; }
+  :focus-visible{ outline: 2px solid var(--amber); outline-offset: 2px; }
+  header.nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(15,34,56,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding: 16px 28px; max-width: 1080px; margin: 0 auto; }
+  .logo{ font-family: var(--mono); font-weight:700; font-size: 15px; text-decoration:none; }
+  .logo .bracket{ color: var(--amber); }
+  .logo .sub{ color: var(--text-dim); font-weight:500; font-size:12px; }
+  .nav-links{ display:flex; gap:20px; font-family: var(--mono); font-size:12.5px; }
+  .nav-links a{ color: var(--text-muted); text-decoration:none; }
+  .nav-links a:hover{ color: var(--amber); }
+
+  article{ max-width: 720px; margin: 0 auto; padding: 56px 28px 80px; }
+  .meta{ font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); }
+  h1{ font-family: var(--mono); font-size: clamp(26px, 4vw, 38px); line-height: 1.2; margin: 12px 0 10px; letter-spacing: -0.01em; }
+  .standfirst{ color: var(--text-muted); font-size: 17px; margin-bottom: 34px; }
+  h2{ font-family: var(--mono); font-size: 20px; margin: 40px 0 12px; }
+  p{ color: var(--text-muted); font-size: 15.5px; margin-bottom: 16px; }
+  p strong, li strong{ color: var(--text); font-weight: 600; }
+  ul, ol{ color: var(--text-muted); font-size: 15.5px; margin: 0 0 16px 22px; }
+  li{ margin-bottom: 8px; }
+  code{ font-family: var(--mono); font-size: 0.88em; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; color: var(--text); }
+  pre{ background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; overflow-x: auto; margin-bottom: 16px; }
+  pre code{ background: none; border: none; padding: 0; font-size: 13px; color: var(--text-muted); }
+  .callout{ border-left: 3px solid var(--amber); background: var(--bg-panel); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 22px 0; }
+  .callout p{ margin-bottom: 0; }
+  .footer-nav{ border-top: 1px solid var(--border); margin-top: 48px; padding-top: 22px; font-family: var(--mono); font-size: 13px; }
+  .footer-nav a{ color: var(--amber); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo"><span class="bracket">[</span>vinay<span class="bracket">]</span> <span class="sub">of vawsome</span></a>
+    <nav class="nav-links">
+      <a href="/writing/">Writing</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://vawsome.com/" target="_blank" rel="noopener">Vawsome ↗</a>
+    </nav>
+  </div>
+</header>
+
+<article>
+  <p class="meta">Postmortem · 17 July 2026 · Vinay Nair</p>
+  <h1>Anatomy of an apex outage</h1>
+  <p class="standfirst">How a leftover A record and an exact-match Route quietly sent my apex domain to a stranger's nginx — and what it taught me about DNS migrations, testing methods, and the order you remove things in.</p>
+
+  <h2>The symptom</h2>
+  <p><code>vawsome.com</code> was intermittently serving a plain <strong>404 Not Found — nginx/1.18.0 (Ubuntu)</strong> page. Not a Cloudflare error page. Not my Worker's own asset 404. A real nginx origin's default error page, from a server I don't run.</p>
+  <p>Meanwhile <code>www.vawsome.com</code> and <code>vinay.vawsome.com</code> — served by the exact same Cloudflare Worker — worked perfectly the whole time. Same code, same zone, three hostnames, one broken.</p>
+
+  <h2>The architecture, briefly</h2>
+  <p>The whole setup is one Cloudflare Worker fronting static assets, branching on the <code>Host</code> header: the apex and <code>www</code> get the company page, the <code>vinay</code> subdomain gets the personal site. For the Worker to answer, something has to bind each hostname to it. Cloudflare gives you two mechanisms that look interchangeable and very much aren't:</p>
+  <ul>
+    <li>A <strong>Custom Domain</strong> creates and fully owns a special DNS record with no origin behind it. 100% of traffic for that host goes to the Worker, full stop.</li>
+    <li>A <strong>Route</strong> attaches to <em>whatever DNS record already exists</em> for a pattern. If the pattern doesn't match a request — or the record underneath still points somewhere real — traffic falls through.</li>
+  </ul>
+
+  <h2>The root cause</h2>
+  <p>The zone had a leftover, proxied <strong>A record for the bare apex</strong>, pointing at a real nginx server from however the site was originally stood up. Layered on top was a Workers <strong>Route with the pattern <code>vawsome.com</code></strong> — no wildcard — trying to intercept requests before they reached that origin.</p>
+  <p>The exact-match pattern silently failed to match real requests. So traffic sailed straight through Cloudflare's proxy to the live nginx origin, which had no vhost for the domain and answered with its default 404.</p>
+  <p>Why were the other two hostnames fine? <code>www</code> happened to match a <em>separate</em> wildcard Route (<code>*.vawsome.com/*</code>). And <code>vinay.vawsome.com</code> had been set up as a Custom Domain from the start — there was no origin behind it to fall through <em>to</em>. The one hostname configured the right way was the one that never broke. That's not a coincidence; that's the lesson.</p>
+
+  <h2>The fix</h2>
+  <ol>
+    <li>Add <code>vawsome.com</code> as a <strong>Custom Domain</strong> on the Worker.</li>
+    <li>Confirm it serves the site correctly.</li>
+    <li>Only then delete the apex A record and the broken Route.</li>
+  </ol>
+  <p>I'm listing it in that order because I didn't do it in that order. Mid-fix, I deleted the broken Route <em>before</em> the Custom Domain was confirmed working — and caused a brief but total apex outage. No Route and no Custom Domain means nothing intercepting at all.</p>
+
+  <div class="callout">
+    <p><strong>Sequence migrations as add-new → confirm-working → remove-old.</strong> Never remove-then-add. This is the same rule as blue-green deployments, and DNS is exactly where people forget it applies.</p>
+  </div>
+
+  <h2>The debugging trap</h2>
+  <p>The nastiest part wasn't the DNS — it was trusting my test methods. During the incident, <code>curl</code> and a real browser disagreed for a while, and there was genuine confusion about whether the nginx 404 was a testing artifact. A fresh browser navigation was what finally settled it.</p>
+  <div class="callout">
+    <p><strong>When debugging "it works for me / it doesn't for you," verify with a real browser navigation, not <code>curl</code> alone</strong> — and don't trust a cached page either. Hard-refresh, or cache-bust with a throwaway query string.</p>
+  </div>
+
+  <h2>What I'd tell you to remember</h2>
+  <ul>
+    <li><strong>Prefer Custom Domains over Routes</strong> for binding hostnames to Cloudflare Workers. A Custom Domain owns the record; a Route negotiates with whatever's already there.</li>
+    <li><strong>Leftover DNS records are live ammunition.</strong> The apex A record wasn't doing anything visible — until the layer above it failed and it quietly became the answer.</li>
+    <li><strong>Partial failure patterns are a map.</strong> Three hostnames, one broken: the difference in how each was configured pointed straight at the cause.</li>
+    <li><strong>Add, confirm, then remove.</strong> In that order. Always.</li>
+  </ul>
+  <p>Sixteen years in, incidents like this one are still the best teachers — small enough to be harmless, structured exactly like the ones that aren't.</p>
+
+  <div class="footer-nav">
+    <a href="/writing/">← All articles</a> &nbsp;·&nbsp; <a href="/">vinay.vawsome.com</a> &nbsp;·&nbsp; <a href="/rss.xml">RSS</a>
+  </div>
+</article>
+
+</body>
+</html>

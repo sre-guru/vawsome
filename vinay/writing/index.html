@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — Vinay Nair</title>
+<meta name="description" content="Notes from production — articles by Vinay Nair on infrastructure, SRE, FinOps, and running AI systems for real. Incidents included.">
+<link rel="canonical" href="https://vinay.vawsome.com/writing/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Writing — Vinay Nair">
+<meta property="og:description" content="Notes from production — infrastructure, SRE, FinOps, and multi-agent AI. Incidents included.">
+<meta property="og:url" content="https://vinay.vawsome.com/writing/">
+<meta property="og:image" content="https://vinay.vawsome.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F2238'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%23FFB238' text-anchor='middle'%3E[n]%3C/text%3E%3C/svg%3E">
+<link rel="alternate" type="application/rss+xml" title="Vinay Nair — Writing" href="/rss.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F2238;
+    --bg-panel: #15304C;
+    --grid-line: rgba(90,140,180,0.10);
+    --border: #2C4E6E;
+    --border-bright: #3E6789;
+    --text: #E7EFF6;
+    --text-muted: #82A0B8;
+    --text-dim: #5A7690;
+    --amber: #FFB238;
+    --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  body{
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 32px 32px,
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 32px 32px,
+      var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: inherit; }
+  :focus-visible{ outline: 2px solid var(--amber); outline-offset: 2px; }
+  header.nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(15,34,56,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding: 16px 28px; max-width: 1080px; margin: 0 auto; }
+  .logo{ font-family: var(--mono); font-weight:700; font-size: 15px; text-decoration:none; }
+  .logo .bracket{ color: var(--amber); }
+  .logo .sub{ color: var(--text-dim); font-weight:500; font-size:12px; }
+  .nav-links{ display:flex; gap:20px; font-family: var(--mono); font-size:12.5px; }
+  .nav-links a{ color: var(--text-muted); text-decoration:none; }
+  .nav-links a:hover{ color: var(--amber); }
+
+  main{ max-width: 760px; margin: 0 auto; padding: 56px 28px 80px; }
+  .eyebrow{ font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); }
+  h1{ font-family: var(--mono); font-size: clamp(26px, 4vw, 38px); margin: 12px 0 10px; }
+  .lede{ color: var(--text-muted); font-size: 16.5px; margin-bottom: 40px; max-width: 56ch; }
+  .lede a{ color: var(--amber); text-decoration: none; }
+
+  .post{
+    display:block; background: var(--bg-panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 22px 24px; margin-bottom: 16px;
+    text-decoration: none; transition: border-color .15s ease, transform .15s ease;
+  }
+  .post:hover{ border-color: var(--border-bright); transform: translateY(-2px); }
+  .post .tag{ font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .post h2{ font-size: 19px; margin-bottom: 8px; }
+  .post p{ color: var(--text-muted); font-size: 14.5px; }
+  .post .read{ font-family: var(--mono); font-size: 13px; color: var(--amber); margin-top: 12px; display:inline-block; }
+
+  .soon{ border-style: dashed; opacity: 0.85; }
+  .soon:hover{ transform:none; border-color: var(--border); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo"><span class="bracket">[</span>vinay<span class="bracket">]</span> <span class="sub">of vawsome</span></a>
+    <nav class="nav-links">
+      <a href="/#log">Career log</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://vawsome.com/" target="_blank" rel="noopener">Vawsome ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <p class="eyebrow">Writing</p>
+  <h1>Notes from production.</h1>
+  <p class="lede">Articles on running infrastructure and AI systems for real — SRE, FinOps, landing zones, multi-agent AI, and the incidents that teach more than the successes. Subscribe via <a href="/rss.xml">RSS</a>.</p>
+
+  <a class="post" href="/writing/anatomy-of-an-apex-outage">
+    <div class="tag">Postmortem · 17 Jul 2026</div>
+    <h2>Anatomy of an apex outage</h2>
+    <p>How a leftover A record and an exact-match Route quietly sent my apex domain to a stranger's nginx — and what it taught me about DNS migrations, testing methods, and the order you remove things in.</p>
+    <span class="read">→ read</span>
+  </a>
+
+  <div class="post soon">
+    <div class="tag">Coming up</div>
+    <h2>What a €13M FinOps programme actually automates</h2>
+    <p>The unglamorous machinery behind verified cloud savings — and why dashboards alone never save a cent.</p>
+  </div>
+
+  <div class="post soon">
+    <div class="tag">Coming up</div>
+    <h2>Keeping multi-agent AI alive in production</h2>
+    <p>Applying SRE discipline to AWS Bedrock, AgentCore, and Strands SDK agents that have to run unattended.</p>
+  </div>
+</main>
+
+</body>
+</html>

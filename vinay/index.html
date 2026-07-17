@@ -10,7 +10,10 @@
 <meta property="og:title" content="Vinay Nair — Lead Platform Engineer &amp; SRE Architect">
 <meta property="og:description" content="16 years, machine room to multi-agent AI. The engineer behind Vawsome.">
 <meta property="og:url" content="https://vinay.vawsome.com/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://vinay.vawsome.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F2238'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%23FFB238' text-anchor='middle'%3E[n]%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
@@ -19,7 +22,7 @@
   "name": "Vinay Nair",
   "jobTitle": "Lead Platform Engineer & SRE Architect",
   "url": "https://vinay.vawsome.com/",
-  "email": "mailto:risingvinay@gmail.com",
+  "email": "mailto:vinay@vawsome.com",
   "telephone": "+31620391314",
   "address": { "@type": "PostalAddress", "addressLocality": "Amsterdam", "addressCountry": "NL" },
   "nationality": "Dutch",
@@ -173,6 +176,7 @@
       <a href="#achievements">Achievements</a>
       <a href="#skills">Skills</a>
       <a href="#log">Career log</a>
+      <a href="#writing">Writing</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-right">
@@ -288,7 +292,7 @@
         <h3>Senior Lead SRE, Architect &amp; Mentor — AWS Enterprise Cloud Platform</h3>
         <div class="role">Shell · The Hague, Netherlands</div>
         <ul>
-          <li>Rejoined to lead a 12-person DevOps team managing Shell's AWS Enterprise Cloud Platform across 600+ business-critical accounts</li>
+          <li>Rejoined the AWS Foundations team to lead 12 DevOps engineers managing Shell's AWS Enterprise Cloud Platform across 600+ business-critical accounts</li>
           <li>Cut deployment cycle from 1 week to 20 minutes — touchless change management, automated release notes, auto-tagging, Sonar, Checkov, Copilot PR analysis</li>
           <li>Designed complex SSM Automation for agent install and domain-join across 600+ accounts (multi-Lambda, SSM command documents, shell scripting)</li>
           <li>Led StackSet-to-Terraform migration across 600+ accounts (1,000+ resources per account)</li>
@@ -410,6 +414,27 @@
   </div>
 </section>
 
+<section id="writing" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Writing</p>
+    <h2>Notes from production.</h2>
+    <p>A series of articles on running infrastructure and AI systems for real — incidents included. New pieces land at <a href="/writing/" style="color:var(--amber); text-decoration:none;">/writing</a>, with an <a href="/rss.xml" style="color:var(--amber); text-decoration:none;">RSS feed</a> if you want them as they ship.</p>
+  </div>
+  <div class="achievements">
+    <div class="ach-card">
+      <p style="font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Postmortem · Jul 2026</p>
+      <p><strong style="font-family:var(--sans); font-size:16px; color:var(--text);"><a href="/writing/anatomy-of-an-apex-outage" style="text-decoration:none;">Anatomy of an apex outage</a></strong></p>
+      <p style="margin-top:8px;">How a leftover A record and an exact-match Route quietly sent my apex domain to a stranger's nginx — and what it taught me about DNS migrations, testing methods, and the order you remove things in.</p>
+      <p style="margin-top:10px;"><a href="/writing/anatomy-of-an-apex-outage" style="font-family:var(--mono); font-size:13px; color:var(--amber); text-decoration:none;">→ read the postmortem</a></p>
+    </div>
+    <div class="ach-card">
+      <p style="font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">Coming up</p>
+      <p>Next in the series: what a €13M FinOps programme actually automates, and keeping multi-agent AI alive in production without babysitting it.</p>
+      <p style="margin-top:10px;"><a href="/writing/" style="font-family:var(--mono); font-size:13px; color:var(--amber); text-decoration:none;">→ all articles</a></p>
+    </div>
+  </div>
+</section>
+
 <section id="contact" class="wrap">
   <div class="section-head">
     <p class="eyebrow">Contact</p>
@@ -418,7 +443,7 @@
   </div>
   <div class="contact-panel">
     <p style="font-family:var(--mono); font-size:13.5px; line-height:2.2;">
-      <a href="mailto:risingvinay@gmail.com" style="color:var(--amber); text-decoration:none;">→ risingvinay@gmail.com</a><br>
+      <a href="mailto:vinay@vawsome.com" style="color:var(--amber); text-decoration:none;">→ vinay@vawsome.com</a><br>
       <a href="tel:+31620391314" style="color:var(--amber); text-decoration:none;">→ +31 6 20 39 13 14</a><br>
       <a href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">→ linkedin.com/in/vinaynair-sre</a><br>
       <a href="/Vinay_Nair_Resume.pdf" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">→ résumé (PDF)</a><br>
@@ -430,7 +455,7 @@
 <footer class="wrap">
   <div class="footer-inner">
     <span>Vinay Nair · Founder, <a href="https://vawsome.com/" target="_blank" rel="noopener" style="text-decoration:none; color:var(--amber);">Vawsome</a></span>
-    <span><a href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener" style="text-decoration:none;">LinkedIn</a> · <a href="mailto:risingvinay@gmail.com" style="text-decoration:none;">Email</a></span>
+    <span><a href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener" style="text-decoration:none;">LinkedIn</a> · <a href="mailto:vinay@vawsome.com" style="text-decoration:none;">Email</a></span>
     <span id="year"></span>
   </div>
 </footer>

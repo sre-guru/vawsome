@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vinay Nair — Writing</title>
+    <link>https://vinay.vawsome.com/writing/</link>
+    <description>Notes from production — infrastructure, SRE, FinOps, and multi-agent AI. Incidents included.</description>
+    <language>en</language>
+    <atom:link href="https://vinay.vawsome.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Fri, 17 Jul 2026 12:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Anatomy of an apex outage</title>
+      <link>https://vinay.vawsome.com/writing/anatomy-of-an-apex-outage</link>
+      <guid>https://vinay.vawsome.com/writing/anatomy-of-an-apex-outage</guid>
+      <pubDate>Fri, 17 Jul 2026 12:00:00 GMT</pubDate>
+      <description>How a leftover A record and an exact-match Route quietly sent my apex domain to a stranger's nginx — and what it taught me about DNS migrations, testing methods, and the order you remove things in.</description>
+    </item>
+  </channel>
+</rss>
