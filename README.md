@@ -26,6 +26,7 @@ Company copy never says "I"/"my"; personal copy never says "we" about itself. An
 
 ```
 index.html              company page (vawsome.com)
+og.png                  social-share (Open Graph) image for vawsome.com, 1200×630
 Vinay_Nair_Resume.pdf   résumé PDF, kept at root so legacy links keep working
 worker.js               host-routing Worker + contact-form handler
 wrangler.jsonc          Worker config: assets binding, run_worker_first, send_email binding
@@ -33,11 +34,20 @@ wrangler.jsonc          Worker config: assets binding, run_worker_first, send_em
 .gitignore              local-only files (.wrangler/ dev cache, .DS_Store)
 vinay/
   index.html            personal page (vinay.vawsome.com)
+  og.png                social-share (Open Graph) image for the subdomain, 1200×630
+  rss.xml               RSS feed for the writing section (update by hand per article)
   resume.html           résumé SOURCE OF TRUTH — print-optimized A4 HTML
   Vinay_Nair_Resume.pdf  résumé PDF served on the subdomain
+  writing/
+    index.html          article index (vinay.vawsome.com/writing/)
+    *.html              one file per article, personal "I" voice
 scripts/
   build-resume.sh       regenerates both PDF copies from vinay/resume.html
 ```
+
+## Email addresses
+
+The public contact address everywhere (both sites, résumé, JSON-LD) is **`vinay@vawsome.com`**. It must exist as a **custom address** in Cloudflare Email Routing (Email → Email Routing → Routing rules → Create address) forwarding to `risingvinay@gmail.com` — until that rule exists, mail sent to it bounces. The Gmail address remains the *verified destination* underneath; the contact-form Worker still delivers to it directly via the `send_email` binding, so the form works independently of the custom-address rule.
 
 ## Domains & DNS
 

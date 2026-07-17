@@ -93,7 +93,7 @@ async function handleContact(request, env) {
     const msg = new EmailMessage("contact@vawsome.com", "risingvinay@gmail.com", raw);
     await env.SEND_EMAIL.send(msg);
   } catch (err) {
-    return json({ ok: false, error: "Couldn't send right now — email risingvinay@gmail.com directly instead." }, 502);
+    return json({ ok: false, error: "Couldn't send right now — email vinay@vawsome.com directly instead." }, 502);
   }
 
   return json({ ok: true });
