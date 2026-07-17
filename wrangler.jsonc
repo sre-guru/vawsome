@@ -1,7 +1,14 @@
 {
   "name": "vawsome",
   "compatibility_date": "2026-07-17",
+  "main": "worker.js",
   "assets": {
-    "directory": "."
-  }
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "routes": [
+    { "pattern": "vawsome.com", "custom_domain": true },
+    { "pattern": "vinay.vawsome.com", "custom_domain": true }
+  ]
 }

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vinay Nair — Lead Platform Engineer & SRE Architect</title>
+<style>
+  @page{ size: A4; margin: 11mm 12mm; }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  :root{
+    --navy: #0F2238;
+    --navy-mid: #24425F;
+    --amber: #C98B2A;
+    --amber-bright: #E8A331;
+    --ink: #1F2D3A;
+    --muted: #52667A;
+    --line: #D8E0E8;
+    --panel: #F2F5F8;
+  }
+  html,body{ background:#fff; }
+  body{
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    font-size: 9.3pt;
+    line-height: 1.42;
+  }
+  a{ color: inherit; text-decoration: none; }
+
+  /* ---------- HEADER ---------- */
+  .head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    border-bottom: 2.5pt solid var(--navy);
+    padding-bottom: 8pt; margin-bottom: 8pt;
+  }
+  .head h1{ font-size: 21pt; letter-spacing: 0.01em; color: var(--navy); font-weight: 700; }
+  .head .title{ font-size: 10.5pt; color: var(--amber); font-weight: 600; margin-top: 2pt; }
+  .head .tagline{ font-size: 8.6pt; color: var(--muted); margin-top: 3pt; font-style: italic; }
+  .contact{ text-align: right; font-size: 8.4pt; color: var(--muted); line-height: 1.55; }
+  .contact strong{ color: var(--ink); }
+
+  /* ---------- SECTION ---------- */
+  h2{
+    font-size: 9.5pt; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--navy); border-bottom: 1pt solid var(--line);
+    padding-bottom: 2.5pt; margin: 10pt 0 6pt;
+  }
+  h2 .accent{ color: var(--amber); }
+
+  /* ---------- SUMMARY ---------- */
+  .summary{ font-size: 9.3pt; color: var(--ink); }
+  .summary strong{ color: var(--navy); }
+
+  /* ---------- IMPACT STRIP ---------- */
+  .impact{
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 4pt;
+    margin-top: 7pt;
+  }
+  .impact .cell{
+    background: var(--panel); border-top: 2pt solid var(--amber);
+    padding: 5pt 6pt; text-align: center;
+  }
+  .impact .num{ font-size: 11.5pt; font-weight: 700; color: var(--navy); }
+  .impact .lbl{ font-size: 6.9pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 1.5pt; line-height: 1.25; }
+
+  /* ---------- SKILLS ---------- */
+  .skills{ display: grid; grid-template-columns: 1fr 1fr; gap: 3.5pt 10pt; }
+  .skill-row{ font-size: 8.7pt; }
+  .skill-row .cat{
+    display:inline-block; font-weight: 700; color: var(--navy);
+    font-size: 8.4pt;
+  }
+  .skill-row .cat::after{ content: " · "; color: var(--amber); font-weight:700; }
+  .skill-row .expert{ color: var(--amber); font-weight: 600; }
+
+  /* ---------- EXPERIENCE ---------- */
+  .job{ margin-bottom: 7.5pt; page-break-inside: avoid; }
+  .job-head{ display:flex; justify-content:space-between; align-items:baseline; }
+  .job-head h3{ font-size: 10pt; color: var(--navy); font-weight: 700; }
+  .job-head .dates{ font-size: 8.4pt; color: var(--amber); font-weight: 600; white-space: nowrap; }
+  .job .org{ font-size: 8.7pt; color: var(--muted); margin: 1pt 0 3pt; }
+  .job ul{ padding-left: 11pt; }
+  .job li{ margin-bottom: 1.6pt; font-size: 8.9pt; }
+  .job li strong{ color: var(--navy); }
+  .job li::marker{ color: var(--amber); }
+
+  /* ---------- TWO-COL FOOT ---------- */
+  .foot-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 0 16pt; }
+  .foot-grid p{ font-size: 8.7pt; margin-bottom: 3pt; }
+  .foot-grid p strong{ color: var(--navy); }
+
+  .earlier{ font-size: 8.9pt; margin-bottom: 5pt; }
+  .earlier strong{ color: var(--navy); }
+  .earlier .dates{ color: var(--amber); font-weight:600; font-size: 8.3pt; }
+
+  .page-break{ page-break-before: always; }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div>
+    <h1>VINAY NAIR</h1>
+    <div class="title">Lead Platform Engineer · SRE Architect · Cloud &amp; AI Infrastructure</div>
+    <div class="tagline">Leads by example — common sense with framework, never framework over common sense.</div>
+  </div>
+  <div class="contact" style="white-space: nowrap;">
+    Amsterdam, NL · <strong>Dutch national · EU citizen</strong><br>
+    +31 6 20391314 · risingvinay@gmail.com<br>
+    linkedin.com/in/vinaynair-sre · vinay.vawsome.com
+  </div>
+</div>
+
+<div class="summary">
+  Platform engineer, SRE, and hands-on architect with <strong>16 years</strong> of experience — from physical SAN/NAS and Unix at petabyte scale to AI/ML infrastructure and cloud platforms serving hundreds of teams. <strong>Main architect for all AWS landing zone aspects at Shell</strong> and builder of its Enterprise Cloud Platform from the ground up; led cost optimisation returning <strong>€13M in a year</strong> and cut deployment cycles from weeks to minutes across <strong>600+ AWS accounts</strong>. Equally at home as IC, tech lead, product owner, SRE coach, and agile transformer — a leader people follow, who authors half the team's commits while leading it. Currently building <strong>autonomous multi-agent AI systems in production</strong> (AWS Bedrock, AgentCore, Strands SDK).
+</div>
+
+<div class="impact">
+  <div class="cell"><div class="num">€13M</div><div class="lbl">verified cloud savings in 12 months</div></div>
+  <div class="cell"><div class="num">600+</div><div class="lbl">AWS accounts, landing zone architect</div></div>
+  <div class="cell"><div class="num">1wk→20m</div><div class="lbl">deployment cycle after CI/CD overhaul</div></div>
+  <div class="cell"><div class="num">100s</div><div class="lbl">of Lambdas written &amp; shipped</div></div>
+  <div class="cell"><div class="num">25</div><div class="lbl">engineers turned into one SRE team</div></div>
+  <div class="cell"><div class="num">26</div><div class="lbl">EKS/AKS clusters, one observability pane</div></div>
+</div>
+
+<h2>Core Skills <span class="accent">/</span> Expert marked in amber</h2>
+<div class="skills">
+  <div class="skill-row"><span class="cat">AWS</span><span class="expert">Expert — landing zones (specialty)</span>, Control Tower, EKS, Bedrock, SageMaker, Lambda, SSM, Step Functions, TGW, Config, GuardDuty</div>
+  <div class="skill-row"><span class="cat">AI / ML / Agents</span><span class="expert">Multi-agent AI in production</span> — Bedrock, AgentCore, Strands SDK, SageMaker, Azure ML, AI Foundry, Copilot</div>
+  <div class="skill-row"><span class="cat">Kubernetes</span><span class="expert">CKA + CKAD certified</span> — EKS, AKS, ROSA, OpenShift, Helm, ArgoCD, Karpenter</div>
+  <div class="skill-row"><span class="cat">IaC / Automation</span>Terraform (Enterprise + Cloud), StackSets, AVM, Ansible, Packer, AWS CDK, Python frameworks</div>
+  <div class="skill-row"><span class="cat">Languages</span><span class="expert">Python (primary, strong developer)</span>, Bash, PowerShell, AWK, HCL, YAML, JavaScript, Perl, Golang (exposure)</div>
+  <div class="skill-row"><span class="cat">CI/CD</span>GitHub Actions, Jenkins on K8s, Concourse, Azure DevOps, Sonar, Checkov, Copilot PR analysis</div>
+  <div class="skill-row"><span class="cat">Azure</span>AKS, Azure ML, AI Foundry, Azure DevOps — plus GCP</div>
+  <div class="skill-row"><span class="cat">Observability</span>Prometheus, Grafana, Thanos, Dynatrace, ELK, CloudWatch, Datadog, DTrace</div>
+  <div class="skill-row"><span class="cat">Security / FinOps</span>Security Hub, GuardDuty, WAF/Shield, Aqua CSPM, WIZ, Vault, CIS L2/3, NIST, Well-Architected, RI/SP optimisation</div>
+  <div class="skill-row"><span class="cat">Infrastructure</span>Linux, Solaris, AIX, SAN/NAS (EMC, VMAX, NetApp, ZFS), TSM, VMware, networking</div>
+  <div class="skill-row"><span class="cat">Leadership</span><span class="expert">Leads by example</span> — Product Owner, SRE coaching, Staff SRE mentoring, HLD/LLD design, stakeholder &amp; resource management</div>
+  <div class="skill-row"><span class="cat">Agile at Scale</span><span class="expert">SAFe strong practitioner</span> — PI planning, ART coordination, Scrum, agile transformation, logical reasoning first</div>
+</div>
+
+<h2>Professional Experience</h2>
+
+<div class="job">
+  <div class="job-head"><h3>Senior Lead SRE, Architect &amp; Mentor — AWS Enterprise Cloud Platform</h3><span class="dates">Sep 2024 – Present</span></div>
+  <div class="org">Shell · The Hague, Netherlands</div>
+  <ul>
+    <li>Lead a 12-person DevOps team running Shell's AWS Enterprise Cloud Platform across <strong>600+ business-critical accounts</strong>; author roughly half the team's commits while leading it</li>
+    <li>Cut deployment cycle from <strong>1 week to 20 minutes</strong> — touchless change management, automated release notes, auto-tagging, Sonar, Checkov, Copilot PR analysis</li>
+    <li>Designed complex SSM Automation for agent installation and EC2 domain-join (multi-Lambda, SSM documents); overhauled provisioning and patching across the estate</li>
+    <li>Led <strong>StackSet-to-Terraform migration</strong> across 600+ accounts at 1,000+ resources per account; implemented AWS Backup with enterprise-scale exception handling</li>
+    <li>Authored the <strong>Shell AWS One Pager</strong> — adopted enterprise-wide as the definitive AWS onboarding and policy guide</li>
+    <li>Primary mentor to Staff Lead SREs on architecture (HLD/LLD), CIS L2/3, NIST, and Well-Architected standards; led OpenShift/ROSA PoC for a 10,000+ VM migration off VMware</li>
+    <li>Building <strong>autonomous multi-agent AI systems</strong> in production with AWS Bedrock, AgentCore, and Strands SDK</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head"><h3>Lead SRE &amp; Product Owner — FinOps / Cloud Cost Optimisation (CoCo)</h3><span class="dates">Aug 2023 – Sep 2024</span></div>
+  <div class="org">Shell · The Hague, Netherlands</div>
+  <ul>
+    <li>Appointed to pioneer Shell's cloud cost optimisation programme; delivered <strong>€13M in verified savings within 12 months</strong> across AWS and Azure</li>
+    <li>RI/Savings Plans strategy, automated non-prod enforcement, orphaned AMI/snapshot/disk cleanup, disk tier migrations, idle RDS shutdowns, Trusted Advisor automation</li>
+    <li>Built gamified PowerBI dashboards that turned savings into healthy competition and executive-level accountability across business units</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head"><h3>Product Owner &amp; SRE Coach — AWS Platform Team</h3><span class="dates">Aug 2022 – Jul 2023</span></div>
+  <div class="org">Shell · Amsterdam, Netherlands</div>
+  <ul>
+    <li><strong>Main architect for Shell's AWS landing zone</strong> — AVM, StackSets, and Control Tower implementation across 600+ business-critical accounts</li>
+    <li>Turned a newly merged, dysfunctional team of 25 engineers (5 dev, 20 ops) into a high-performing SRE team — SRE culture, Scrum, shared ownership, cross-skill upskilling</li>
+    <li>Built fully touchless ServiceNow workflows: account onboarding/update/decom, IAM creation, image allowlisting</li>
+    <li>Member of the <strong>Technical Review Board (TRB)</strong> ruling on exceptions; weekly cadence with AWS TAMs</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head"><h3>Lead SRE — Data Science &amp; Observability</h3><span class="dates">Sep 2021 – Jul 2022</span></div>
+  <div class="org">Shell · Amsterdam, Netherlands</div>
+  <ul>
+    <li><strong>Pioneered MLOps at Shell</strong> — first engineer to ship SageMaker and Azure ML as centralised, enterprise-wide shared services</li>
+    <li>Established centralised observability for <strong>26 EKS/AKS clusters</strong> (Prometheus, Grafana, Thanos); deployed Aqua CSPM and initiated WIZ migration</li>
+    <li>Implemented Dremio data virtualisation with custom Terraform-style provisioning automation built in Python</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head"><h3>Cloud DevOps Engineer</h3><span class="dates">Sep 2020 – Sep 2021</span></div>
+  <div class="org">Nationale-Nederlanden · The Hague, Netherlands</div>
+  <ul>
+    <li>Core member of the AWS Landing Zone team provisioning <strong>500+ accounts</strong>; overhauled the CI/CD system end to end</li>
+    <li>Designed Transit Gateway with Direct Connect, egress firewall automation, DNS forwarders, and cross-account SSO</li>
+    <li>Implemented the enterprise security framework: Config Rules, Security Hub, GuardDuty, Shield, WAF</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head"><h3>Lead SRE — Be.Agile Platform (AWS + Azure)</h3><span class="dates">Jun 2019 – Aug 2020</span></div>
+  <div class="org">Shell · Amsterdam, Netherlands</div>
+  <ul>
+    <li>Led the CI/CD team merging Shell's two developer platforms (AWS + Azure) into one serving <strong>400+ developers</strong></li>
+    <li>Architected cross-cloud CI/CD enabling deployments from AWS into Azure; integrated Vault and Terraform Enterprise; built automated untagged-resource cleanup and non-prod sleep cycles</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head"><h3>Site Reliability Engineer — Subsurface Data Universe (SDU)</h3><span class="dates">May 2017 – May 2019</span></div>
+  <div class="org">Shell · Bengaluru, India</div>
+  <ul>
+    <li>Core engineer on Shell's pioneering cloud-native programme for <strong>200+ petroleum data scientists</strong> on AWS</li>
+    <li>Drove IaC from day one with Terraform and Packer — blank AWS account to Kubernetes; managed <strong>600+ Lambdas</strong> and multi-region K8s workloads with Jenkins-on-K8s CI/CD</li>
+  </ul>
+</div>
+
+<h2>Earlier Career</h2>
+<p class="earlier"><strong>Duty Manager — Unix / Storage / Cloud Infrastructure</strong>, Oracle India · <span class="dates">Sep 2014 – Apr 2017</span><br>
+Managed 900+ NAS filers and petabytes of data across Oracle's global storage estate; ZFS replication automation, SAN performance optimisation, DTrace-based NAS troubleshooting; shift lead for incident response and change management.</p>
+<p class="earlier"><strong>Consultant → Team Lead &amp; Resource Manager — Unix / Storage</strong>, HCL Technologies · <span class="dates">Sep 2008 – Sep 2014</span><br>
+Progressed from consultant to Team Lead and Resource Manager in four years, managing 10+ engineers. Solaris, AIX, Linux; EMC Clarion, VMAX, NetApp NAS, IBM TSM; Broadcom SAN switches and FC fabrics for enterprise clients.</p>
+
+<h2>Certifications, Education &amp; Right to Work</h2>
+<div class="foot-grid">
+  <div>
+    <p><strong>Certifications:</strong> Certified Kubernetes Administrator (CKA), 2023 · Certified Kubernetes Application Developer (CKAD), 2023 · Sun Certified Solaris Administrator 1 &amp; 2</p>
+    <p><strong>Education:</strong> B.Tech — Electrical, Electronics &amp; Communications Engineering, University of Calicut, India (2004–2008)</p>
+  </div>
+  <div>
+    <p><strong>Languages:</strong> English, Hindi, Malayalam, Tamil (excellent) · Dutch (conversational) · French (basic)</p>
+    <p><strong>Right to work:</strong> Dutch national — unrestricted EU/NL · UAE/Gulf visa-eligible · open to relocation</p>
+  </div>
+</div>
+
+</body>
+</html>

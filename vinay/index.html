@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinay Nair — Lead Platform Engineer &amp; SRE Architect</title>
+<meta name="description" content="Vinay Nair — the engineer Vawsome is built around. 16 years from physical SAN/NAS to AI/ML infrastructure. €13M in verified cloud savings, 600+ AWS accounts, autonomous multi-agent AI in production.">
+<link rel="canonical" href="https://vinay.vawsome.com/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Vinay Nair — Lead Platform Engineer &amp; SRE Architect">
+<meta property="og:description" content="16 years, machine room to multi-agent AI. The engineer behind Vawsome.">
+<meta property="og:url" content="https://vinay.vawsome.com/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F2238'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%23FFB238' text-anchor='middle'%3E[n]%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Vinay Nair",
+  "jobTitle": "Lead Platform Engineer & SRE Architect",
+  "url": "https://vinay.vawsome.com/",
+  "email": "mailto:risingvinay@gmail.com",
+  "telephone": "+31620391314",
+  "address": { "@type": "PostalAddress", "addressLocality": "Amsterdam", "addressCountry": "NL" },
+  "nationality": "Dutch",
+  "worksFor": { "@type": "Organization", "name": "Vawsome", "url": "https://vawsome.com/" },
+  "sameAs": ["https://www.linkedin.com/in/vinaynair-sre/", "https://vawsome.com/"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F2238;
+    --bg-panel: #15304C;
+    --bg-panel-raised: #1B3A5C;
+    --grid-line: rgba(90,140,180,0.10);
+    --border: #2C4E6E;
+    --border-bright: #3E6789;
+    --text: #E7EFF6;
+    --text-muted: #82A0B8;
+    --text-dim: #5A7690;
+    --amber: #FFB238;
+    --amber-dim: #C98B2A;
+    --green: #4FD69C;
+    --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --radius: 3px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 32px 32px,
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 32px 32px,
+      var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: inherit; }
+  :focus-visible{ outline: 2px solid var(--amber); outline-offset: 2px; }
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+  .eyebrow{
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--amber);
+  }
+
+  header.nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(15,34,56,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding: 16px 28px; }
+  .logo{ font-family: var(--mono); font-weight:700; font-size: 15px; letter-spacing: 0.02em; text-decoration:none; display:flex; align-items:center; gap:8px; }
+  .logo .bracket{ color: var(--amber); }
+  .logo .sub{ color: var(--text-dim); font-weight:500; font-size:12px; }
+  .nav-right{ display:flex; align-items:center; gap:22px; }
+  .status-pill{ display:flex; align-items:center; gap:7px; font-family: var(--mono); font-size:11.5px; letter-spacing:0.06em; color: var(--green); text-transform:uppercase; }
+  .dot{ width:7px; height:7px; border-radius:50%; background: var(--green); box-shadow: 0 0 0 0 rgba(79,214,156,0.6); animation: pulse 2.2s infinite; }
+  @keyframes pulse{ 0%{ box-shadow: 0 0 0 0 rgba(79,214,156,0.45); } 70%{ box-shadow: 0 0 0 7px rgba(79,214,156,0); } 100%{ box-shadow: 0 0 0 0 rgba(79,214,156,0); } }
+  .btn{ font-family: var(--mono); font-size: 13px; font-weight:600; padding: 9px 16px; border-radius: var(--radius); text-decoration:none; display:inline-block; border: 1px solid var(--border-bright); transition: border-color .15s ease, background .15s ease, transform .1s ease; }
+  .btn:hover{ border-color: var(--amber); transform: translateY(-1px); }
+  .btn-solid{ background: var(--amber); color: #16283C; border-color: var(--amber); font-weight:700; }
+  .btn-solid:hover{ background: #ffbf55; }
+  .nav-right .btn{ display:none; }
+  @media(min-width:640px){ .nav-right .btn{ display:inline-block; } }
+
+  .hero{ padding: 64px 0 40px; }
+  .hero-grid{ display:grid; grid-template-columns: 1fr; gap: 40px; align-items:start; }
+  @media(min-width:900px){ .hero-grid{ grid-template-columns: 1.05fr 0.95fr; gap:56px; } }
+  h1{ font-family: var(--mono); font-size: clamp(28px, 4.4vw, 44px); line-height: 1.15; font-weight:700; letter-spacing:-0.01em; margin: 14px 0 16px; }
+  h1 span{ color: var(--amber); }
+  .lede{ color: var(--text-muted); font-size: 17px; max-width: 46ch; margin-bottom: 26px; }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:12px; }
+
+  .terminal{ background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px; overflow:hidden; box-shadow: 0 20px 60px -20px rgba(0,0,0,0.5); }
+  .term-bar{ display:flex; align-items:center; gap:8px; padding: 10px 14px; background: var(--bg-panel-raised); border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
+  .term-dots{ display:flex; gap:6px; }
+  .term-dots span{ width:9px; height:9px; border-radius:50%; background:#3E6789; }
+  .term-body{ padding: 20px; font-family: var(--mono); font-size: 13.5px; }
+  .term-body .line{ margin-bottom: 10px; }
+  .term-body .prompt{ color: var(--green); }
+  .term-body .out{ color: var(--text-muted); padding-left: 18px; }
+  .term-body .out strong{ color: var(--text); font-weight:600; }
+  .cursor{ display:inline-block; width:8px; height:15px; background: var(--amber); vertical-align: middle; margin-left:4px; animation: blink 1s step-end infinite; }
+  @media (prefers-reduced-motion: reduce){ .cursor, .dot{ animation: none; } }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .badges{ display:flex; flex-wrap:wrap; gap:9px; margin: 22px 0 0; }
+  .badge{ font-family: var(--mono); font-size: 12px; padding: 6px 11px; border: 1px solid var(--border); border-radius: 20px; color: var(--text-muted); }
+  .badge.ok{ color: var(--green); border-color: rgba(79,214,156,0.35); }
+
+  .nav-links{ display:none; gap:20px; font-family: var(--mono); font-size:12.5px; }
+  .nav-links a{ color: var(--text-muted); text-decoration:none; transition: color .15s ease; }
+  .nav-links a:hover{ color: var(--amber); }
+  @media(min-width:1040px){ .nav-links{ display:flex; } }
+
+  section{ padding: 64px 0; border-top: 1px solid var(--border); }
+  .section-head{ margin-bottom: 34px; max-width: 62ch; }
+  .section-head h2{ font-family: var(--mono); font-size: clamp(22px,3vw,28px); margin-top:8px; }
+  .section-head p{ color: var(--text-muted); margin-top: 10px; }
+
+  .about-grid{ display:grid; grid-template-columns:1fr; gap:20px; max-width: 76ch; }
+  .about-grid p{ color: var(--text-muted); font-size: 15.5px; }
+  .about-grid p strong{ color: var(--text); font-weight:600; }
+
+  .achievements{ display:grid; grid-template-columns: 1fr; gap: 14px; }
+  @media(min-width:800px){ .achievements{ grid-template-columns: repeat(2,1fr); } }
+  .ach-card{ background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px; padding: 20px 22px; transition: border-color .15s ease, transform .15s ease; }
+  .ach-card:hover{ border-color: var(--border-bright); transform: translateY(-2px); }
+  .ach-card p{ color: var(--text-muted); font-size: 14.5px; }
+  .ach-card p strong{ color: var(--amber); font-family: var(--mono); }
+
+  .stack{ display:grid; grid-template-columns: 1fr; gap: 14px; }
+  @media(min-width:800px){ .stack{ grid-template-columns: repeat(2,1fr); } }
+  .stack-card{ background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; }
+  .stack-card h3{ font-family: var(--mono); font-size: 11.5px; color: var(--amber); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .stack-card p{ color: var(--text-muted); font-size: 14px; }
+
+  .log{ display:flex; flex-direction:column; }
+  .log-entry{ display:grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .log-entry:last-child{ border-bottom:none; }
+  .log-hash{ font-family: var(--mono); color: var(--amber-dim); font-size: 13px; padding-top:2px; }
+  .log-main h3{ font-size: 16px; margin-bottom:4px; }
+  .log-main .role{ font-family: var(--mono); font-size:12px; color: var(--text-dim); margin-bottom:8px; }
+  .log-main ul{ color: var(--text-muted); font-size: 14px; padding-left: 18px; }
+  .log-main ul li{ margin-bottom: 4px; }
+
+  .creds{ display:grid; grid-template-columns:1fr; gap:14px; }
+  @media(min-width:800px){ .creds{ grid-template-columns: repeat(2,1fr); } }
+  .cred-card{ background: var(--bg-panel); border:1px solid var(--border); border-radius:8px; padding: 18px 20px; }
+  .cred-card h3{ font-family: var(--mono); font-size: 11.5px; color: var(--amber); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .cred-card p{ color: var(--text-muted); font-size: 14px; }
+
+  .contact-panel{ background: var(--bg-panel); border:1px solid var(--border); border-radius:8px; padding: 30px; max-width: 640px; }
+
+  footer{ padding: 34px 0 50px; border-top:1px solid var(--border); }
+  .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family: var(--mono); font-size:12px; color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="bracket">[</span>vinay<span class="bracket">]</span> <span class="sub">of vawsome</span></a>
+    <nav class="nav-links">
+      <a href="#who">Who am I</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#skills">Skills</a>
+      <a href="#log">Career log</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <div class="status-pill"><span class="dot"></span> Available</div>
+      <a class="btn" href="https://vawsome.com/" target="_blank" rel="noopener">Vawsome ↗</a>
+      <a class="btn btn-solid" href="/Vinay_Nair_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">Who Am I · The Brain Behind Vawsome</p>
+      <h1>Sixteen years from the <span>machine room</span> to multi-agent AI.</h1>
+      <p class="lede">I'm Vinay Nair — Lead Platform Engineer and SRE Architect, and the founder Vawsome is built around. I started fixing SANs in person when a bad change meant a drive to the datacenter; I now build the AI infrastructure and cloud platforms other engineers trust not to page them at 3am.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#who">Read my story</a>
+        <a class="btn" href="#log">Career log</a>
+        <a class="btn" href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="badges">
+        <span class="badge ok">CKA certified</span>
+        <span class="badge ok">CKAD certified</span>
+        <span class="badge">16 years experience</span>
+        <span class="badge">AWS landing zone specialist</span>
+        <span class="badge">Dutch national · EU citizen</span>
+        <span class="badge">Amsterdam, NL</span>
+      </div>
+    </div>
+
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="term-dots"><span></span><span></span><span></span></div>
+        vinay@vawsome:~
+      </div>
+      <div class="term-body">
+        <div class="line"><span class="prompt">$</span> whoami</div>
+        <div class="line out">Vinay Nair — Lead Platform Engineer / SRE Architect.<br><strong>16 years</strong>, Amsterdam, NL.</div>
+        <div class="line"><span class="prompt">$</span> cat headline_number.txt</div>
+        <div class="line out"><strong style="color:var(--amber)">€13,000,000</strong> verified cloud savings, 12 months</div>
+        <div class="line"><span class="prompt">$</span> ls roles/</div>
+        <div class="line out">IC&nbsp;&nbsp;tech-lead&nbsp;&nbsp;resource-mgr&nbsp;&nbsp;product-owner&nbsp;&nbsp;sre-coach&nbsp;&nbsp;agile-transformer</div>
+        <div class="line"><span class="prompt">$</span> cat philosophy.txt</div>
+        <div class="line out">Common sense <strong>with</strong> framework — never framework <strong>over</strong> common sense.</div>
+        <div class="line"><span class="prompt">$</span> status --check</div>
+        <div class="line out"><strong style="color:var(--green)">● building</strong> autonomous multi-agent AI in production<span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="who" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Who am I</p>
+    <h2>The engineer, not the title.</h2>
+  </div>
+  <div class="about-grid">
+    <p>I started in the machine room — <strong>Solaris, AIX, and petabyte-scale SAN/NAS</strong> at a global storage vendor, back when a bad change meant driving to the datacenter at 2am. That decade of fundamentals is why the cloud work holds up: I know exactly what the abstractions are abstracting.</p>
+    <p>Since then I've built cloud platforms at enterprise scale: I built <strong>Shell's Enterprise Cloud Platform from scratch</strong>, growing it from a managed service into a self-service platform for <strong>100+ engineering teams</strong>, and served as the <strong>main architect for every AWS landing zone aspect at Shell</strong> — account vending, guardrails, networking, identity, the lot. Landing zones are my specialty, and I've written <strong>hundreds of Lambdas</strong> to make them run touchless. I pioneered MLOps there — first engineer to put SageMaker and Azure ML into production as shared services, before "MLOps" was even the word people used. I led a FinOps programme that returned <strong>€13M in verified savings in twelve months</strong>. I rebuilt CI/CD across <strong>600+ AWS accounts</strong> and cut deployment cycles from a week to <strong>20 minutes</strong>. I sat on the <strong>Technical Review Board</strong>, judging the exceptions — the cases where the rulebook runs out and someone has to reason from first principles.</p>
+    <p>I've been the individual contributor, the tech lead, the resource manager, the product owner, the SRE coach, and the agile transformer — sometimes all in the same quarter. I lead by example: I write production Python daily, and on my current engagement I author roughly <strong>half the team's commits</strong> while leading it. That's also why people follow — engineers I've led and mentored would <strong>join anything I start, any day</strong>. I took a newly merged, dysfunctional 25-person team and turned it into a high-performing SRE org using SRE principles, Scrum, and logical reasoning about what was actually broken — not a framework applied by rote.</p>
+    <p style="font-family:var(--mono); font-size:15px; color:var(--text); border-left: 3px solid var(--amber); padding: 10px 0 10px 18px;">I'm a strong SAFe and Agile practitioner — PI planning, ART coordination, scaled delivery — but I'm a fan of <span style="color:var(--amber);">common sense with framework</span>, never framework over common sense.</p>
+    <p>Right now the most interesting work is <strong>autonomous multi-agent AI in production</strong> — AWS Bedrock, AgentCore, and Strands SDK — applying the same reliability discipline to agents that SRE brought to services. It's why I started <a href="https://vawsome.com/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">Vawsome</a>: to take that discipline to teams beyond the one I lead day to day.</p>
+  </div>
+</section>
+
+<section id="achievements" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Key achievements</p>
+    <h2>What sixteen years actually produced.</h2>
+  </div>
+  <div class="achievements">
+    <div class="ach-card"><p><strong>€13M</strong> in verified cloud savings within 12 months at Shell — FinOps automation, RI/Savings Plans, orphan cleanup, and executive dashboards across AWS and Azure.</p></div>
+    <div class="ach-card"><p><strong>1 week → 20 min</strong> deployment cycle — rebuilt CI/CD with touchless change management, auto-tagging, Sonar, Checkov, and Copilot-assisted release notes across 600+ accounts.</p></div>
+    <div class="ach-card"><p><strong>Built from scratch</strong> — Shell's Enterprise Cloud Platform, grown from managed services into a self-service platform for 100+ engineering teams.</p></div>
+    <div class="ach-card"><p><strong>Main architect</strong> for all AWS landing zone aspects at Shell — account vending, guardrails, networking, identity — with hundreds of Lambdas written to keep it touchless. TRB member for exceptions.</p></div>
+    <div class="ach-card"><p><strong>First at Shell</strong> to deploy AWS SageMaker and Azure ML as centralised, shared MLOps platform services enterprise-wide.</p></div>
+    <div class="ach-card"><p><strong>25 → 1 team</strong> — turned a newly merged, dysfunctional group of 25 engineers into a high-performing SRE org using SRE principles and Scrum.</p></div>
+    <div class="ach-card"><p><strong>26 clusters</strong> — established centralised observability across 26 EKS/AKS clusters with Prometheus, Grafana, and Thanos.</p></div>
+    <div class="ach-card"><p><strong>900+ filers</strong> — ran an enterprise-scale, petabyte-class Oracle storage estate with ZFS replication automation and DTrace-based troubleshooting.</p></div>
+    <div class="ach-card"><p><strong>In production now</strong> — autonomous multi-agent AI systems on AWS Bedrock, AgentCore, and Strands SDK, including a Doc Generator agent and a job-hunting automation pipeline.</p></div>
+  </div>
+</section>
+
+<section id="skills" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Skills</p>
+    <h2>What I bring.</h2>
+  </div>
+  <div class="stack">
+    <div class="stack-card"><h3>Cloud Platforms</h3><p>AWS (expert) — landing zones (specialty), Control Tower, EKS, SageMaker, Bedrock, Lambda (hundreds written), SSM, Step Functions, TGW, Config, GuardDuty · Azure — AKS, Azure ML, AI Foundry, Azure DevOps · GCP</p></div>
+    <div class="stack-card"><h3>AI / ML / Agents</h3><p>AWS Bedrock · AgentCore · Strands SDK · Azure AI Foundry · SageMaker · Azure ML · GitHub Copilot · multi-agent orchestration in production</p></div>
+    <div class="stack-card"><h3>Infrastructure</h3><p>Linux · Unix (Solaris, AIX) · SAN/NAS (EMC Clarion, VMAX, NetApp, ZFS) · Networking · Storage (TSM, SAN, ZFS) · VMware</p></div>
+    <div class="stack-card"><h3>Kubernetes</h3><p>EKS · AKS · ROSA · OpenShift · Helm · ArgoCD · Karpenter — CKA + CKAD certified</p></div>
+    <div class="stack-card"><h3>IaC / Automation</h3><p>Terraform (Enterprise + Cloud) · StackSets · AVM · Ansible · Packer · AWS CDK · Python automation frameworks</p></div>
+    <div class="stack-card"><h3>CI/CD</h3><p>GitHub Actions · Jenkins on Kubernetes · Concourse · Azure DevOps Pipelines · Sonar · Checkov · Copilot PR analysis</p></div>
+    <div class="stack-card"><h3>Observability</h3><p>Prometheus · Grafana · Thanos · Dynatrace · ELK · CloudWatch · Datadog · DTrace</p></div>
+    <div class="stack-card"><h3>Security / FinOps</h3><p>Security Hub · GuardDuty · Shield · WAF · Aqua CSPM · WIZ · HashiCorp Vault · CIS L2/3 · NIST · Well-Architected · RI/Savings Plans</p></div>
+    <div class="stack-card"><h3>Languages</h3><p>Python (primary, strong developer) · Bash · PowerShell · AWK · YAML · HCL · JavaScript · Perl · Golang (exposure)</p></div>
+    <div class="stack-card"><h3>Leadership</h3><p>Leads by example · Product Owner · SAFe (PI planning, ART coordination) · Scrum · SRE coaching · FinOps · HLD/LLD design · Staff SRE mentoring · stakeholder management · Agile transformation · logical reasoning first, framework second</p></div>
+  </div>
+</section>
+
+<section id="log" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Career log</p>
+    <h2>Deploy history.</h2>
+  </div>
+  <div class="log">
+    <div class="log-entry">
+      <div class="log-hash">Sep 2024 → now</div>
+      <div class="log-main">
+        <h3>Senior Lead SRE, Architect &amp; Mentor — AWS Enterprise Cloud Platform</h3>
+        <div class="role">Shell · The Hague, Netherlands</div>
+        <ul>
+          <li>Rejoined to lead a 12-person DevOps team managing Shell's AWS Enterprise Cloud Platform across 600+ business-critical accounts</li>
+          <li>Cut deployment cycle from 1 week to 20 minutes — touchless change management, automated release notes, auto-tagging, Sonar, Checkov, Copilot PR analysis</li>
+          <li>Designed complex SSM Automation for agent install and domain-join across 600+ accounts (multi-Lambda, SSM command documents, shell scripting)</li>
+          <li>Led StackSet-to-Terraform migration across 600+ accounts (1,000+ resources per account)</li>
+          <li>Authored the Shell AWS One Pager — adopted enterprise-wide as the definitive AWS onboarding guide</li>
+          <li>Led PoC for Red Hat OpenShift / ROSA evaluating migration of 10,000+ VMs from VMware</li>
+          <li>Building autonomous multi-agent AI systems using AWS Bedrock, AgentCore, and Strands SDK</li>
+        </ul>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">Aug 2023 – Sep 2024</div>
+      <div class="log-main">
+        <h3>Lead SRE &amp; Product Owner — FinOps / Cloud Cost Optimisation</h3>
+        <div class="role">Shell · The Hague, Netherlands</div>
+        <ul>
+          <li>Pioneered Shell's cloud cost optimisation programme (CoCo), delivering €13M in verified savings within 12 months across AWS and Azure</li>
+          <li>RI/Savings Plans, automated non-prod enforcement, orphaned resource cleanup, disk tier migrations, scheduled shutdowns, Trusted Advisor automation</li>
+          <li>Built gamified PowerBI dashboards to drive savings accountability across teams</li>
+        </ul>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">Aug 2022 – Jul 2023</div>
+      <div class="log-main">
+        <h3>Product Owner &amp; SRE Coach — AWS Platform Team</h3>
+        <div class="role">Shell · Amsterdam, Netherlands</div>
+        <ul>
+          <li>Led a newly merged team of 25 engineers (5 dev, 20 ops) with no shared culture — one of the hardest leadership assignments of my career</li>
+          <li>Resolved dev-vs-ops tension by introducing SRE culture, Scrum ceremonies, and shared ownership</li>
+          <li>Built fully touchless Snow ticket workflows: AWS account onboarding, IAM creation, image allowlisting</li>
+          <li>Main architect for Shell's AWS landing zone — led AVM, StackSets, and AWS Control Tower implementation across 600+ accounts</li>
+          <li>Member of the Technical Review Board (TRB) for exceptions; weekly calls with AWS TAMs</li>
+        </ul>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">Sep 2021 – Jul 2022</div>
+      <div class="log-main">
+        <h3>Lead Site Reliability Engineer — Data Science &amp; Observability</h3>
+        <div class="role">Shell · Amsterdam, Netherlands</div>
+        <ul>
+          <li>Pioneered MLOps at Shell — first to implement SageMaker and Azure ML as centralised shared services</li>
+          <li>Established centralised monitoring for 26 EKS/AKS clusters with Prometheus, Grafana, and Thanos</li>
+          <li>Deployed CSPM with Aqua; initiated WIZ migration</li>
+        </ul>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">Sep 2020 – Sep 2021</div>
+      <div class="log-main">
+        <h3>Cloud DevOps Engineer</h3>
+        <div class="role">Nationale-Nederlanden · The Hague, Netherlands</div>
+        <ul>
+          <li>Core member of AWS Landing Zone team provisioning 500+ AWS accounts</li>
+          <li>Overhauled CI/CD; implemented Transit Gateway design with egress firewall automation</li>
+          <li>Built enterprise security framework: Config Rules, Security Hub, GuardDuty, Shield, WAF</li>
+        </ul>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">Jun 2019 – Aug 2020</div>
+      <div class="log-main">
+        <h3>Lead Site Reliability Engineer — Be.Agile Platform (AWS + Azure)</h3>
+        <div class="role">Shell · Amsterdam, Netherlands</div>
+        <ul>
+          <li>Led CI/CD team merging two developer platforms into one serving 400+ developers</li>
+          <li>Architected cross-cloud CI/CD enabling deployments from AWS into Azure</li>
+          <li>Integrated HashiCorp Vault and Terraform Enterprise into CI/CD pipelines</li>
+        </ul>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">May 2017 – May 2019</div>
+      <div class="log-main">
+        <h3>Site Reliability Engineer — Subsurface Data Universe</h3>
+        <div class="role">Shell · Bengaluru, India</div>
+        <ul>
+          <li>Core engineer on Shell's pioneering cloud-native programme for 200+ petroleum data scientists</li>
+          <li>Drove IaC from day one with Terraform and Packer — blank AWS account to Kubernetes</li>
+          <li>Managed 600+ Lambdas and multi-region Kubernetes workloads</li>
+        </ul>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">Sep 2014 – Apr 2017</div>
+      <div class="log-main">
+        <h3>Duty Manager — Unix / Storage / Cloud Infrastructure</h3>
+        <div class="role">Oracle India Pvt. Ltd · Bangalore, India</div>
+        <ul>
+          <li>Managed 900+ NAS filers and petabytes of enterprise data</li>
+          <li>Led ZFS storage replication automation; DTrace-based NAS performance troubleshooting</li>
+        </ul>
+      </div>
+    </div>
+    <div class="log-entry">
+      <div class="log-hash">Sep 2008 – Sep 2014</div>
+      <div class="log-main">
+        <h3>Consultant, Team Lead &amp; Resource Manager</h3>
+        <div class="role">HCL Technologies · India</div>
+        <ul>
+          <li>Progressed from infrastructure consultant to Team Lead and Resource Manager in 4 years, managing 10+ engineers</li>
+          <li>Solaris, AIX, Linux; EMC Clarion, VMAX, NetApp NAS, IBM TSM; Broadcom SAN switches, FC fabrics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Certifications &amp; education</p>
+    <h2>Paper to back it up.</h2>
+  </div>
+  <div class="creds">
+    <div class="cred-card"><h3>Certifications</h3><p>Certified Kubernetes Administrator (CKA), 2023 · Certified Kubernetes Application Developer (CKAD), 2023 · Sun Certified Solaris Administrator 1 &amp; 2</p></div>
+    <div class="cred-card"><h3>Education</h3><p>B.Tech, Electrical, Electronics &amp; Communications Engineering — University of Calicut, Kerala, India (2004–2008)</p></div>
+    <div class="cred-card"><h3>Languages</h3><p>English, Hindi, Malayalam, Tamil (Excellent) · Dutch (Conversational) · French (Basic)</p></div>
+    <div class="cred-card"><h3>Right to work</h3><p>Dutch national — unrestricted EU/NL rights · UAE/Gulf visa-eligible · open to relocation</p></div>
+  </div>
+</section>
+
+<section id="contact" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Contact</p>
+    <h2>Let's talk.</h2>
+    <p>For engagement scoping and project work, start with <a href="https://vawsome.com/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">vawsome.com</a>. For everything else — roles, references, a direct conversation — reach me here.</p>
+  </div>
+  <div class="contact-panel">
+    <p style="font-family:var(--mono); font-size:13.5px; line-height:2.2;">
+      <a href="mailto:risingvinay@gmail.com" style="color:var(--amber); text-decoration:none;">→ risingvinay@gmail.com</a><br>
+      <a href="tel:+31620391314" style="color:var(--amber); text-decoration:none;">→ +31 6 20 39 13 14</a><br>
+      <a href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">→ linkedin.com/in/vinaynair-sre</a><br>
+      <a href="/Vinay_Nair_Resume.pdf" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">→ résumé (PDF)</a><br>
+      <a href="https://vawsome.com/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration:none;">→ vawsome.com (the company)</a>
+    </p>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <span>Vinay Nair · Founder, <a href="https://vawsome.com/" target="_blank" rel="noopener" style="text-decoration:none; color:var(--amber);">Vawsome</a></span>
+    <span><a href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener" style="text-decoration:none;">LinkedIn</a> · <a href="mailto:risingvinay@gmail.com" style="text-decoration:none;">Email</a></span>
+    <span id="year"></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

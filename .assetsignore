@@ -1,0 +1,4 @@
+scripts/
+wrangler.jsonc
+worker.js
+.wrangler/
