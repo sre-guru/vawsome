@@ -54,7 +54,19 @@ npx wrangler dev                            # simulates vawsome.com
 npx wrangler dev --host vinay.vawsome.com   # simulates the subdomain
 ```
 
-Note: `wrangler dev` ignores the incoming `Host` header and simulates the first domain in `routes` — use `--host` to test the subdomain. Changes to `wrangler.jsonc` or `.assetsignore` require a dev-server restart.
+Note: `wrangler dev` ignores the incoming `Host` header on plain requests and defaults to the company site — use `--host vinay.vawsome.com` to simulate the subdomain. Changes to `wrangler.jsonc` or `.assetsignore` require a dev-server restart.
+
+## Contact form
+
+The form on `vawsome.com` posts to `/api/contact`, handled in `worker.js`, which sends the message via Cloudflare **Email Routing** (the `send_email` binding in `wrangler.jsonc`) straight to risingvinay@gmail.com — no third-party API, no key to manage. The email's `Reply-To` is set to the visitor's address, so replying goes directly to them. A hidden honeypot field (`website`) silently no-ops on bot submissions instead of sending them.
+
+**One-time setup required in the Cloudflare dashboard** before this works (the code is already deployed and will 502 with a mailto fallback until this is done):
+
+1. **Email → Email Routing** on the `vawsome.com` zone → **Enable**. This replaces the current null MX record with Cloudflare's routing MX/TXT records — nothing else uses email on this domain today, so there's no conflict.
+2. Add `risingvinay@gmail.com` as a **destination address** and click the verification link Cloudflare emails to it. The `send_email` binding can only deliver to a verified destination.
+3. No routing rule is needed — the Worker sends directly via the binding, not through a forwarding rule. The `From:` address (`contact@vawsome.com`) doesn't need to be a real mailbox; Cloudflare signs it because the zone has Email Routing enabled.
+
+The binding can't be exercised in local `wrangler dev` until step 1–2 are done live — locally it will always hit the graceful-failure path.
 
 ## Deploying
 

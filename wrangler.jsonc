@@ -6,8 +6,16 @@
     "directory": ".",
     "binding": "ASSETS",
     "run_worker_first": true
-  }
+  },
+  "send_email": [
+    { "name": "SEND_EMAIL", "destination_address": "risingvinay@gmail.com" }
+  ]
   // Custom domains (vawsome.com, www, vinay.vawsome.com) are managed in the
   // Cloudflare dashboard, NOT here — a `routes` block makes every build
   // re-reconcile domain attachments, which detached the apex on 2026-07-17.
+  //
+  // The send_email binding requires a one-time dashboard setup before it
+  // will work — see README.md "Contact form" section: enable Email Routing
+  // on the vawsome.com zone and verify risingvinay@gmail.com as a
+  // destination address.
 }

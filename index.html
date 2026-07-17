@@ -483,8 +483,12 @@
         <label for="message">What are you trying to solve?</label>
         <textarea id="message" name="message" required></textarea>
       </div>
-      <button type="submit" class="btn btn-solid">Send message</button>
-      <p class="contact-note">Opens your email client with this pre-filled and ready to send.<br>Prefer to call? <a href="tel:+31620391314" style="color:var(--amber); text-decoration:none;">+31 6 20 39 13 14</a></p>
+      <div style="position:absolute; left:-5000px;" aria-hidden="true">
+        <label for="website">Leave this field empty</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn-solid" id="contactSubmit">Send message</button>
+      <p class="contact-note" id="contactNote">Sends straight to my inbox — I'll reply directly to your email.<br>Prefer to call? <a href="tel:+31620391314" style="color:var(--amber); text-decoration:none;">+31 6 20 39 13 14</a></p>
     </form>
   </div>
 </section>
@@ -515,15 +519,43 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Contact form -> mailto
-  document.getElementById('contactForm').addEventListener('submit', function(e){
+  // Contact form -> POST /api/contact (sent via Cloudflare Email Routing)
+  document.getElementById('contactForm').addEventListener('submit', async function(e){
     e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    const subject = encodeURIComponent('Website inquiry from ' + name);
-    const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
-    window.location.href = 'mailto:risingvinay@gmail.com?subject=' + subject + '&body=' + body;
+    const form = e.target;
+    const submitBtn = document.getElementById('contactSubmit');
+    const note = document.getElementById('contactNote');
+    const payload = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value,
+      website: document.getElementById('website').value, // honeypot
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        form.reset();
+        submitBtn.textContent = 'Sent ✓';
+        note.textContent = "Thanks — that's in my inbox now. I'll reply directly to your email.";
+        note.style.color = 'var(--green)';
+      } else {
+        throw new Error(data.error || 'Something went wrong.');
+      }
+    } catch (err) {
+      submitBtn.textContent = 'Send message';
+      submitBtn.disabled = false;
+      note.innerHTML = (err.message || "Couldn't send that.") + ' Email <a href="mailto:risingvinay@gmail.com" style="color:var(--amber);">risingvinay@gmail.com</a> directly instead.';
+      note.style.color = 'var(--amber)';
+    }
   });
 </script>
 
