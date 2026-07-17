@@ -10,7 +10,10 @@
 <meta property="og:title" content="Vawsome — Platform &amp; SRE Engineering Consultancy">
 <meta property="og:description" content="Infrastructure that doesn't page anyone at 3am. Kubernetes, Terraform, AWS, GitOps, and the infrastructure behind AI agents — delivered fixed-scope.">
 <meta property="og:url" content="https://vawsome.com/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://vawsome.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F2238'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%23FFB238' text-anchor='middle'%3E[v]%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
@@ -19,7 +22,7 @@
   "name": "Vawsome",
   "description": "Platform & SRE engineering consultancy — Kubernetes, Terraform, AWS, GitOps, and multi-agent AI infrastructure.",
   "url": "https://vawsome.com/",
-  "email": "mailto:risingvinay@gmail.com",
+  "email": "mailto:vinay@vawsome.com",
   "founder": { "@type": "Person", "name": "Vinay Nair", "url": "https://vinay.vawsome.com/" },
   "sameAs": ["https://www.linkedin.com/in/vinaynair-sre/"]
 }
@@ -225,6 +228,66 @@
     display:flex; justify-content:space-between;
   }
 
+  /* ---------- CASE STUDIES ---------- */
+  .cases{ display:grid; grid-template-columns: 1fr; gap: 18px; }
+  @media(min-width:800px){ .cases{ grid-template-columns: repeat(2,1fr); } }
+  .case-card{
+    background: var(--bg-panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 22px;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .case-card:hover{ border-color: var(--border-bright); transform: translateY(-2px); }
+  .case-card h3{ font-size: 16.5px; margin-bottom: 12px; }
+  .case-card p{ color: var(--text-muted); font-size: 14px; margin-bottom: 10px; }
+  .case-card p:last-child{ margin-bottom: 0; }
+  .case-card p strong{ color: var(--text); }
+  .case-k{
+    display:inline-block; font-family: var(--mono); font-size: 10.5px;
+    color: var(--amber); letter-spacing: 0.08em; text-transform: uppercase;
+    margin-right: 6px;
+  }
+
+  /* ---------- DEMOS ---------- */
+  .demos{ display:grid; grid-template-columns: 1fr; gap: 18px; }
+  @media(min-width:960px){ .demos{ grid-template-columns: repeat(3,1fr); } }
+  .demo-card{
+    background: var(--bg-panel); border: 1px solid var(--border);
+    border-radius: 8px; overflow:hidden; display:flex; flex-direction:column;
+  }
+  .demo-head{
+    padding: 16px 18px 0;
+  }
+  .demo-head .svc-tag{ margin-bottom: 8px; }
+  .demo-head h3{ font-size: 16.5px; margin-bottom: 8px; }
+  .demo-head p{ color: var(--text-muted); font-size: 13.5px; margin-bottom: 14px; }
+  .demo-term{
+    background: var(--bg); border-top: 1px solid var(--border);
+    padding: 14px 16px; font-family: var(--mono); font-size: 12px;
+    line-height: 1.7; color: var(--text-muted); flex-grow: 1;
+    min-height: 190px; white-space: pre-wrap; word-break: break-word;
+  }
+  .demo-term .p{ color: var(--green); }
+  .demo-term .k{ color: var(--amber); }
+  .demo-term .ok{ color: var(--green); }
+  .demo-foot{
+    padding: 10px 16px; border-top: 1px solid var(--border);
+    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+  }
+  .demo-foot button{
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    background: none; border: 1px solid var(--border-bright); border-radius: var(--radius);
+    color: var(--text-muted); padding: 5px 10px; cursor: pointer;
+  }
+  .demo-foot button:hover{ border-color: var(--amber); color: var(--amber); }
+  .calc-row{ margin-bottom: 12px; }
+  .calc-row label{ display:block; font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin-bottom: 6px; letter-spacing: 0.04em; }
+  .calc-row input[type=range]{ width: 100%; accent-color: var(--amber); }
+  .calc-out{ font-family: var(--mono); font-size: 12px; line-height: 1.9; }
+  .calc-out .big{ color: var(--amber); font-size: 15px; font-weight: 700; }
+  .calc-bar{ height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; margin: 2px 0 8px; }
+  .calc-bar span{ display:block; height: 100%; background: var(--green); }
+
   /* ---------- METRICS ---------- */
   .metrics{ display:grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow:hidden; }
   @media(min-width:800px){ .metrics{ grid-template-columns: repeat(4,1fr); } }
@@ -304,6 +367,8 @@
     <a href="#" class="logo"><span class="bracket">[</span>vawsome<span class="bracket">]</span></a>
     <nav class="nav-links">
       <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#demos">Demos</a>
       <a href="#stack">Stack</a>
       <a href="#track-record">Track record</a>
       <a href="#founder">Founder</a>
@@ -358,7 +423,7 @@
         <div class="line out"><strong style="color:var(--green)">● available</strong> for new engagements<span class="cursor"></span></div>
 
         <div class="uptime-box">
-          <span class="uptime-label">Vawsome system uptime</span>
+          <span class="uptime-label">Operator uptime</span>
           <span class="uptime-value" id="uptime">calculating…</span>
         </div>
       </div>
@@ -370,27 +435,128 @@
   <div class="section-head">
     <p class="eyebrow">Services</p>
     <h2>Fixed-scope engagements, not open-ended hours.</h2>
-    <p>Each one solves a specific problem with a clear deliverable. Scope and price are confirmed on a short call before anything starts.</p>
+    <p>Each one solves a specific problem with a clear deliverable. Prices below are honest starting points — exact scope and price are confirmed on a free call before anything starts.</p>
   </div>
   <div class="services">
     <div class="svc-card">
       <div class="svc-tag">Setup</div>
-      <h3>GitOps Platform Build</h3>
-      <p>A production-ready Kubernetes environment with Terraform-managed infrastructure and ArgoCD-driven deployments — so releases become a merge, not a manual step.</p>
-      <div class="svc-meta"><span>Typical scope: 2 weeks</span><span>Fixed price</span></div>
+      <h3>Kubernetes / GitOps Platform Build</h3>
+      <p>A production-ready Kubernetes environment with Terraform-managed infrastructure and ArgoCD-driven deployments — so releases become a merge, not a manual step. Optional ongoing operation: monitoring, upgrades, and on-call-free maintenance.</p>
+      <div class="svc-meta"><span>From €2,000 per setup</span><span>Ops from €500 / cluster / mo</span></div>
     </div>
     <div class="svc-card">
-      <div class="svc-tag">Audit</div>
-      <h3>Cloud Cost Audit</h3>
-      <p>A focused review of your AWS spend with concrete, ranked recommendations. Built on the same approach used to cut cloud costs by €13M at enterprise scale.</p>
-      <div class="svc-meta"><span>Typical scope: 1–2 weeks</span><span>Fixed price</span></div>
+      <div class="svc-tag">FinOps</div>
+      <h3>Cloud Cost Optimization</h3>
+      <p>We run the whole programme — discovery, analysis, and implementation — entirely free of charge, using the same approach that returned €13M in verified savings at enterprise scale. Our fee is 10% of the savings actually achieved. No savings, no bill.</p>
+      <div class="svc-meta"><span>Discovery &amp; delivery: free</span><span>Fee: 10% of savings</span></div>
     </div>
     <div class="svc-card">
       <div class="svc-tag">Build</div>
       <h3>AI Infrastructure Sprint</h3>
       <p>Production infrastructure for LLM and agent workloads — AWS Bedrock, AgentCore, and Strands SDK — with the model serving, orchestration, and Terraform plumbing that keeps it running unattended.</p>
-      <div class="svc-meta"><span>Typical scope: 2–3 weeks</span><span>Fixed price</span></div>
+      <div class="svc-meta"><span>Typical scope: 2–3 weeks</span><span>From €5,000</span></div>
     </div>
+    <div class="svc-card">
+      <div class="svc-tag">Optimize</div>
+      <h3>CI/CD &amp; Pipeline Optimization</h3>
+      <p>We overhaul slow, flaky, or manual delivery pipelines — the same discipline that took an enterprise deployment cycle from one week to twenty minutes. Scope depends on the estate; small pipelines are quick wins.</p>
+      <div class="svc-meta"><span>Scoped per estate</span><span>From €1,500</span></div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-tag">Run</div>
+      <h3>Websites, Hosting &amp; SEO</h3>
+      <p>We set up, host, and maintain fast static or business sites — DNS, CDN, email routing, analytics, and search optimization included — and keep them patched and ranking all year.</p>
+      <div class="svc-meta"><span>Setup + 12 months included</span><span>From €1,500 / year</span></div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-tag">Transform</div>
+      <h3>SAFe &amp; Agile Transformation</h3>
+      <p>PI planning, ART coordination, and SRE-informed ways of working — led by a practitioner who has turned a merged 25-person team into a high-performing org. Common sense with framework, never framework over common sense.</p>
+      <div class="svc-meta"><span>Depends on org size</span><span>From €5,000 per assignment</span></div>
+    </div>
+  </div>
+  <p style="margin-top:22px; font-family:var(--mono); font-size:13px; color:var(--text-muted);">Not a fixed-scope fit? Plain consultancy runs at <span style="color:var(--amber);">€200 / hour</span>, or <span style="color:var(--amber);">€150 / hour</span> on long-term projects. The first scope call is always free.</p>
+</section>
+
+<section id="work" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Selected work</p>
+    <h2>Problems we've actually solved.</h2>
+    <p>A sample of recent engagements and platform work delivered by Vawsome's founder and bench. Client names available on request.</p>
+  </div>
+  <div class="cases">
+    <div class="case-card">
+      <h3>€13M saved in twelve months — FinOps at a global energy major</h3>
+      <p><span class="case-k">Problem</span> Multi-cloud spend across 600+ AWS accounts and Azure subscriptions growing with no ownership and no accountability.</p>
+      <p><span class="case-k">Built</span> A cost optimisation programme run as engineering, not spreadsheets: RI/Savings Plans strategy, automated non-prod enforcement and scheduled shutdowns, orphaned resource cleanup, disk tier migrations, and gamified dashboards that made savings a competition between business units.</p>
+      <p><span class="case-k">Result</span> <strong>€13M in independently verified savings within 12 months</strong> — the model behind our 10%-of-savings offer.</p>
+    </div>
+    <div class="case-card">
+      <h3>Deployment cycle: one week → twenty minutes</h3>
+      <p><span class="case-k">Problem</span> Releases across a 600+ account AWS estate needed a week of manual change management each.</p>
+      <p><span class="case-k">Built</span> A fully touchless pipeline: automated change management, release notes, auto-tagging, SonarQube and Checkov gates, and AI-assisted PR analysis.</p>
+      <p><span class="case-k">Result</span> <strong>Deployments in 20 minutes</strong>, with a stronger audit trail than the manual process it replaced.</p>
+    </div>
+    <div class="case-card">
+      <h3>StackSets → Terraform, live, across 600+ accounts</h3>
+      <p><span class="case-k">Problem</span> A business-critical landing zone managed through CloudFormation StackSets — over 1,000 resources per account — needed to move to Terraform without breaking production.</p>
+      <p><span class="case-k">Built</span> A staged migration with automated state import, drift detection, and per-account verification before cutover.</p>
+      <p><span class="case-k">Result</span> <strong>The full estate migrated with zero production incidents</strong>, now managed as reviewable code.</p>
+    </div>
+    <div class="case-card">
+      <h3>Autonomous multi-agent AI, running unattended in production</h3>
+      <p><span class="case-k">Problem</span> AI agents are easy to demo and hard to operate — most never survive contact with production.</p>
+      <p><span class="case-k">Built</span> Multi-agent systems on AWS Bedrock, AgentCore, and Strands SDK — including a document-generation agent and end-to-end automation pipelines — with the observability, guardrails, and Terraform plumbing SRE brings to any service.</p>
+      <p><span class="case-k">Result</span> <strong>Agents in production, running unattended</strong> — the reliability discipline of SRE applied to AI.</p>
+    </div>
+  </div>
+</section>
+
+<section id="demos" class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Live demos</p>
+    <h2>Don't take our word for it — poke it.</h2>
+    <p>Small, honest samples of the kind of thing we build. One is live infrastructure you're using right now; the others run sample data until we swap in client-cleared material.</p>
+  </div>
+  <div class="demos">
+
+    <div class="demo-card">
+      <div class="demo-head">
+        <div class="svc-tag">Live · real infrastructure</div>
+        <h3>This site, inspected</h3>
+        <p>vawsome.com is itself a sample deliverable: one Cloudflare Worker serving two sites with host-based routing, a contact form on Email Routing with zero third-party APIs, deployed from git. Below is the live edge answering you.</p>
+      </div>
+      <div class="demo-term" id="traceTerm"><span class="p">$</span> curl vawsome.com/cdn-cgi/trace
+querying edge…</div>
+      <div class="demo-foot"><span>Live values from the request you just made</span></div>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-head">
+        <div class="svc-tag">Interactive · sample model</div>
+        <h3>FinOps savings estimator</h3>
+        <p>Drag your monthly cloud spend. The model uses the lever mix from our €13M programme — real numbers come from a free discovery, not a slider.</p>
+      </div>
+      <div class="demo-term">
+        <div class="calc-row">
+          <label for="spend">MONTHLY CLOUD SPEND: <span class="k" id="spendLbl">€50,000</span></label>
+          <input type="range" id="spend" min="5000" max="500000" step="5000" value="50000">
+        </div>
+        <div class="calc-out" id="calcOut"></div>
+      </div>
+      <div class="demo-foot"><span>Sample model — indicative only</span></div>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-head">
+        <div class="svc-tag">Recorded run · sample</div>
+        <h3>Multi-agent doc generator</h3>
+        <p>A sanitized replay of our production document-generation agents on AWS Bedrock, AgentCore, and Strands SDK — orchestrated, checked, and shipped with no human in the loop.</p>
+      </div>
+      <div class="demo-term" id="agentTerm"></div>
+      <div class="demo-foot"><span>Sanitized output, real pipeline</span><button id="agentReplay" type="button">▶ replay</button></div>
+    </div>
+
   </div>
 </section>
 
@@ -466,7 +632,7 @@
     <h2>Start a conversation.</h2>
     <p>Tell us what you're trying to solve. We'll reply with whether it's a fit and what it would take.</p>
     <p style="margin-top:10px;"><a href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:13px; color:var(--amber); text-decoration:none;">→ linkedin.com/in/vinaynair-sre</a><br>
-    <a href="mailto:risingvinay@gmail.com" style="font-family:var(--mono); font-size:13px; color:var(--amber); text-decoration:none;">→ risingvinay@gmail.com</a><br>
+    <a href="mailto:vinay@vawsome.com" style="font-family:var(--mono); font-size:13px; color:var(--amber); text-decoration:none;">→ vinay@vawsome.com</a><br>
     <a href="https://vinay.vawsome.com/" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:13px; color:var(--amber); text-decoration:none;">→ meet the founder</a></p>
   </div>
   <div class="contact-panel">
@@ -488,7 +654,7 @@
         <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
       </div>
       <button type="submit" class="btn btn-solid" id="contactSubmit">Send message</button>
-      <p class="contact-note" id="contactNote">Sends straight to my inbox — I'll reply directly to your email.<br>Prefer to call? <a href="tel:+31620391314" style="color:var(--amber); text-decoration:none;">+31 6 20 39 13 14</a></p>
+      <p class="contact-note" id="contactNote">Goes straight to the founder's inbox — you'll get a direct reply.<br>Prefer to call? <a href="tel:+31620391314" style="color:var(--amber); text-decoration:none;">+31 6 20 39 13 14</a></p>
     </form>
   </div>
 </section>
@@ -496,28 +662,113 @@
 <footer class="wrap">
   <div class="footer-inner">
     <span>Vawsome · Founder-led by <a href="https://vinay.vawsome.com/" target="_blank" rel="noopener" style="text-decoration:none; color:var(--amber);">Vinay Nair</a></span>
-    <span><a href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener" style="text-decoration:none;">LinkedIn</a> · <a href="mailto:risingvinay@gmail.com" style="text-decoration:none;">Email</a></span>
+    <span><a href="https://www.linkedin.com/in/vinaynair-sre/" target="_blank" rel="noopener" style="text-decoration:none;">LinkedIn</a> · <a href="mailto:vinay@vawsome.com" style="text-decoration:none;">Email</a></span>
     <span id="year"></span>
   </div>
 </footer>
 
 <script>
-  // Uptime counter — since Vawsome's founding
-  const start = new Date('2024-08-01T00:00:00');
+  // Uptime counter — the founder's 16 years in infrastructure (epoch: July 2010)
+  const start = new Date('2010-07-01T00:00:00');
   const el = document.getElementById('uptime');
   function tick(){
     const now = new Date();
     let diff = Math.floor((now - start) / 1000);
+    const years = Math.floor(diff / 31557600); diff -= years*31557600;
     const days = Math.floor(diff / 86400); diff -= days*86400;
     const hrs = Math.floor(diff / 3600); diff -= hrs*3600;
     const mins = Math.floor(diff / 60);
     const secs = diff - mins*60;
-    el.textContent = days + 'd ' + hrs + 'h ' + mins + 'm ' + secs + 's';
+    el.textContent = years + 'y ' + days + 'd ' + hrs + 'h ' + mins + 'm ' + secs + 's';
   }
   tick();
   setInterval(tick, 1000);
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Demo 1: live edge trace — real values from Cloudflare's /cdn-cgi/trace
+  (async function(){
+    const term = document.getElementById('traceTerm');
+    const t0 = performance.getEntriesByType('navigation')[0];
+    const ttfb = t0 ? Math.round(t0.responseStart) : null;
+    try {
+      const res = await fetch('/cdn-cgi/trace');
+      if (!res.ok) throw new Error();
+      const kv = {};
+      (await res.text()).trim().split('\n').forEach(l => { const i = l.indexOf('='); kv[l.slice(0,i)] = l.slice(i+1); });
+      term.innerHTML =
+        '<span class="p">$</span> curl vawsome.com/cdn-cgi/trace\n' +
+        'edge colo    <span class="k">' + (kv.colo || '—') + '</span>\n' +
+        'your country <span class="k">' + (kv.loc || '—') + '</span>\n' +
+        'protocol     <span class="k">' + (kv.http || '—') + '</span>\n' +
+        'tls          <span class="k">' + (kv.tls || '—') + '</span>\n' +
+        'warp/proxy   <span class="k">' + (kv.warp || '—') + '</span>\n' +
+        (ttfb !== null ? 'ttfb         <span class="ok">' + ttfb + 'ms</span> (measured by your browser)\n' : '') +
+        '<span class="ok">● served by the Worker described in this page — no origin server exists</span>';
+    } catch {
+      term.innerHTML =
+        '<span class="p">$</span> curl vawsome.com/cdn-cgi/trace\n' +
+        'edge not reachable from this preview —\nvisit <span class="k">vawsome.com</span> to see live values.';
+    }
+  })();
+
+  // Demo 2: FinOps estimator — sample model, lever mix from the €13M programme
+  (function(){
+    const spend = document.getElementById('spend');
+    const lbl = document.getElementById('spendLbl');
+    const out = document.getElementById('calcOut');
+    const eur = n => '€' + Math.round(n).toLocaleString('en-IE');
+    function render(){
+      const m = +spend.value;
+      lbl.textContent = eur(m);
+      const lo = m * 12 * 0.18, hi = m * 12 * 0.32;
+      const levers = [
+        ['RI / Savings Plans', 0.40],
+        ['Scheduling & non-prod', 0.25],
+        ['Storage tiering', 0.20],
+        ['Orphaned resources', 0.15],
+      ];
+      out.innerHTML =
+        'ESTIMATED SAVINGS / YEAR\n<span class="big">' + eur(lo) + ' – ' + eur(hi) + '</span>\n' +
+        levers.map(([name, w]) =>
+          name + '\n<div class="calc-bar"><span style="width:' + (w*100) + '%"></span></div>'
+        ).join('') +
+        'our fee: 10% of achieved savings — <span class="ok">you keep 90%</span>';
+    }
+    spend.addEventListener('input', render);
+    render();
+  })();
+
+  // Demo 3: recorded agent run — sanitized transcript, replayed line by line
+  (function(){
+    const term = document.getElementById('agentTerm');
+    const lines = [
+      '<span class="p">$</span> agent run doc-generator --source ./design-notes/',
+      '[orchestrator] plan: outline → draft → review → publish',
+      '[agent:outline] read 12 source files… <span class="ok">done</span> (3.1s)',
+      '[agent:draft]   6 sections generated on Bedrock',
+      '[agent:review]  citations checked — <span class="k">2 fixes applied</span>',
+      '[agent:publish] PDF + wiki page rendered <span class="ok">✓</span>',
+      '<span class="ok">run complete — 4m 12s, unattended</span>',
+    ];
+    let timer;
+    function play(){
+      clearTimeout(timer);
+      term.innerHTML = '';
+      let i = 0;
+      (function next(){
+        if (i >= lines.length) return;
+        term.innerHTML += lines[i++] + '\n';
+        timer = setTimeout(next, i === 1 ? 500 : 650);
+      })();
+    }
+    document.getElementById('agentReplay').addEventListener('click', play);
+    let played = false;
+    const io = new IntersectionObserver(es => {
+      if (!played && es.some(e => e.isIntersecting)) { played = true; play(); }
+    }, { threshold: 0.4 });
+    io.observe(term);
+  })();
 
   // Contact form -> POST /api/contact (sent via Cloudflare Email Routing)
   document.getElementById('contactForm').addEventListener('submit', async function(e){
@@ -545,7 +796,7 @@
       if (res.ok && data.ok) {
         form.reset();
         submitBtn.textContent = 'Sent ✓';
-        note.textContent = "Thanks — that's in my inbox now. I'll reply directly to your email.";
+        note.textContent = "Thanks — that's in the founder's inbox now. You'll get a direct reply.";
         note.style.color = 'var(--green)';
       } else {
         throw new Error(data.error || 'Something went wrong.');
@@ -553,7 +804,7 @@
     } catch (err) {
       submitBtn.textContent = 'Send message';
       submitBtn.disabled = false;
-      note.innerHTML = (err.message || "Couldn't send that.") + ' Email <a href="mailto:risingvinay@gmail.com" style="color:var(--amber);">risingvinay@gmail.com</a> directly instead.';
+      note.innerHTML = (err.message || "Couldn't send that.") + ' Email <a href="mailto:vinay@vawsome.com" style="color:var(--amber);">vinay@vawsome.com</a> directly instead.';
       note.style.color = 'var(--amber)';
     }
   });
