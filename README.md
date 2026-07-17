@@ -14,7 +14,7 @@ A single Worker (`worker.js`) fronts all requests (`run_worker_first: true` in `
 - **`vinay.vawsome.com`** → the request path is prefixed with `/vinay` and served from static assets, so `vinay.vawsome.com/resume` serves `vinay/resume.html`. The worker also rewrites the assets router's redirect `Location` headers to strip the internal `/vinay` prefix, keeping the subdomain's public URL space clean.
 - **`vawsome.com`** → served straight from root assets. Requests to `vawsome.com/vinay/*` are 301-redirected to the subdomain, so the personal site has exactly one public address.
 
-Both custom domains are declared in the `routes` block of `wrangler.jsonc`; deploying attaches them (and Cloudflare creates the DNS records) automatically.
+Custom domains (`vawsome.com`, `www.vawsome.com`, `vinay.vawsome.com`) are attached to the Worker in the Cloudflare dashboard (Worker → Settings → Domains &amp; Routes) — deliberately **not** in `wrangler.jsonc`, because a `routes` block makes every deploy re-reconcile domain attachments and can detach a live domain.
 
 `.assetsignore` keeps `worker.js`, `wrangler.jsonc`, and `scripts/` out of the published assets.
 
